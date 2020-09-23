@@ -1,7 +1,7 @@
 <?php
 
-    require_once('includes/header.php');
-    require_once('includes/connection.php');
+require_once('Includes/header.php');
+require_once('Includes/connection.php');
 
     if(isset($_SESSION['StudentID']) || $_SESSION['Faculty'])
     {
@@ -25,7 +25,7 @@
         }
 
     }
-    require_once('includes/footer.php');
+    require_once('Includes/footer.php');
 
 
 

@@ -1,6 +1,6 @@
 <?php
-    require_once('includes/header.php');
-    require_once('includes/connection.php');
+    require_once('Includes/header.php');
+    require_once('Includes/connection.php');
     if(isset($_SESSION['Faculty']))
     {
 
@@ -93,7 +93,7 @@
 
 
 
-<?php   require_once('includes/footer.php');
+<?php   require_once('Includes/footer.php');
 
    
 

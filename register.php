@@ -1,6 +1,6 @@
 <?php
-require_once('includes/header.php');
-require_once('includes/function.php');
+require_once('Includes/header.php');
+require_once('Includes/function.php');
 ?>
 
 
@@ -60,5 +60,5 @@ require_once('includes/function.php');
 
 
 
-<?php require_once('includes/footer.php');
+<?php require_once('Includes/footer.php');
 ?>

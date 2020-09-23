@@ -1,6 +1,5 @@
 <?php
-require_once('includes/header.php');
-
+require_once('Includes/header.php');
 ?>
 
 <div class="container">
@@ -22,5 +21,5 @@ require_once('includes/header.php');
 
 <?php
 
-require_once('includes/footer.php');
+require_once('Includes/footer.php');
 ?>

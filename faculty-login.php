@@ -1,7 +1,6 @@
 <?php
-require_once('includes/header.php');
-
-require_once('includes/function.php');
+require_once('Includes/header.php');
+require_once('Includes/function.php');
 ?>
 
 
@@ -42,11 +41,9 @@ require_once('includes/function.php');
                 <div class="card-body">
 
                 <form action="facultyphp.php" method="POST">
-
                     <input type="text" placeholder="Employee ID" name="empid" class="form-control mb-2">
                     <input type="password" placeholder="password" name="password" class="form-control mb-3" >
                     <button class="btn btn-success" name="login">Login</button>
-                    
                 </form>
                 </div>
             </div>
@@ -56,5 +53,5 @@ require_once('includes/function.php');
 
 
 
-<?php require_once('includes/footer.php');
+<?php require_once('Includes/footer.php');
 ?>
