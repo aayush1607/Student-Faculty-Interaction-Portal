@@ -7,10 +7,18 @@ require_once('Includes/connection.php');
     {
         $_SESSION['GET']=$GetID=$_GET['success'];
         $sql="select * from student_data where Regno='".$GetID."'";
+        $sql2="select * from past_courses where Regno='".$GetID."';";
+        $sql3="select * from current_courses where Regno='".$GetID."';";
         mysqli_select_db($con,"student_management");
-
+        //ALTER TABLE student_data ADD CGPA VARCHAR(10) NOT NULL AFTER Password;
+        //ALTER TABLE student_data ADD Sem INT(10) NOT NULL AFTER CGPA;
+        //CREATE TABLE past_courses(Regno varchar(10),Course varchar(100));
+        //ALTER TABLE past_courses ADD PRIMARY KEY( Regno, Course);
+        //CREATE TABLE current_courses(Regno varchar(10),currCourses varchar(100));
+        //ALTER TABLE current_courses ADD PRIMARY KEY( Regno, currCourses);
         $res=mysqli_query($con,$sql);
-
+        $res2=mysqli_query($con,$sql2);
+        $res3=mysqli_query($con,$sql3);
         while($row=mysqli_fetch_assoc($res))
         {
             $StudentID= $row['Regno'];
@@ -21,8 +29,15 @@ require_once('Includes/connection.php');
             $Branch=$row['Branch'];
             $Email=$row['Email'];
             $Date=$row['Date'];
+            $Sem=$row['Sem'];
+            $CGPA=$row['CGPA'];
 
         }
+        
+        
+        
+
+        
 
     }
     require_once('Includes/footer.php');
@@ -52,7 +67,7 @@ require_once('Includes/connection.php');
             {
                 
 
-
+            
 
         ?>
         <div class="row">
@@ -103,7 +118,51 @@ require_once('Includes/connection.php');
                 <a href="studentedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit</a>
             </div>
         </div>
-
+    <div class="col">        
+    <div class="card bg-dark text-white mt-3">
+        <h3 class="text-center py-3">
+            Academic Details
+        </h3>
+    </div>
+    </div>
+        
+        <div class="col-lg-12">
+            <div class="card mt-3">
+                <table class="table table-striped ">
+                <tr>
+                    <th>Ongoing Semester:</th>
+                    <td><?php echo $Sem ?></td>
+                </tr>
+                <tr>
+                    <th>CPGA Scored:</th>
+                    <td><?php echo $CGPA?></td>
+                </tr>
+                <tr>
+                    <th>Courses Completed:</th>
+                    <td>
+                        <?php
+                            //print_r($row2);
+                            while($row2=mysqli_fetch_assoc($res2)){
+                                echo $row2['Course']."<br>";
+                            }
+                            
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Current Courses:</th>
+                    <td>
+                        <?php
+                        while($row3=mysqli_fetch_assoc($res3)){
+                            echo $row3['currCourses']."<br>";
+                        }
+                        ?>
+                    </td>
+                </tr>
+                </table>
+                <a href="studentacademicedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit</a>
+            </div>
+        </div>
     </div>
 
 

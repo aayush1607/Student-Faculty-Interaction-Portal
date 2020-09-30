@@ -19,6 +19,7 @@
             $Branch=$row['Branch'];
             $Email=$row['Email'];
             $Pass=$row['Password'];
+            
         }
     }
     ?>
@@ -90,6 +91,7 @@ require_once('Includes/function.php');
                 ?>
                 </select>
                 <input type="email" placeholder="Email" name="email" class="form-control mb-2" value="<?php echo $Email?>">
+                
                 <input type="password" placeholder="password" name="password" class="form-control mb-3" value="<?php echo $Pass?>" >
                 
                 
