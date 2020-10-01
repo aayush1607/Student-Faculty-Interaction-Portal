@@ -257,7 +257,7 @@ require_once('Includes/connection.php');
                 $c++;                            
                 echo "<table class=\"table table-striped \">
                 <tr>
-                    <th>Achievement no::</th>
+                    <th>Achievement no:</th>
                     <td>".$c."</td>
                 </tr>
                 <tr>

@@ -34,7 +34,9 @@ require_once('includes/function.php');
 <div class="container">
     <div class="row mb-5">
         <div class="col-lg-6 m-auto ">
-            
+            <div class="mt-5">
+                <img src="images/slogin.png" alt="Student Register" width="150" height="150" class="d-flex m-auto">
+            </div>
             <div class="card mt-5">
                 <div class="card-title bg-dark rounded-top">
                     <h3 class="text-center text-white py-3">Edit Academic Details</h3>
