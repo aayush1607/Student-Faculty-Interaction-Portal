@@ -44,6 +44,7 @@ require_once('Includes/function.php');
                     <input type="text" placeholder="Employee ID" name="empid" class="form-control mb-2">
                     <input type="password" placeholder="password" name="password" class="form-control mb-3" >
                     <button class="btn btn-success" name="login">Login</button>
+                    <a href="faculty-register.php" class="card-link float-right">Register</a>
                 </form>
                 </div>
             </div>

@@ -17,7 +17,7 @@
         <button class="navbar-toggler" data-toggle="collapse" data-target="#Navbar"> 
             <span class="navbar-toggler-icon"> </span>
         </button>
-        <a href="index.html" class="navbar-brand"><h3>SFIP VIT - Student Faculty Interaction Portal</h3></a>
+        <a href="index.php" class="navbar-brand"><h3>SFIP VIT - Student Faculty Interaction Portal</h3></a>
 
         <div class="collapse navbar-collapse" id="Navbar">
             <ul class="navbar-nav ml-auto">
@@ -38,9 +38,13 @@
                         }
                         else
                         {
-                            echo '<a href="login.php" class="nav-link">Login</a></a>                </li>
+                            echo '<a href="login.php" class="nav-link">Student Login</a></a>                </li>
                             <li class="nav-item">
-                                <a href="register.php" class="nav-link">Register</a>
+                                <a href="register.php" class="nav-link">Student Register</a>
+                            </li>
+                            <a href="faculty-login.php" class="nav-link">Faculty Login</a></a>                </li>
+                            <li class="nav-item">
+                                <a href="faculty-register.php" class="nav-link">Faculty Register</a>
                             </li>';
                         }
 

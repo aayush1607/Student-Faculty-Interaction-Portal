@@ -9,6 +9,9 @@ require_once('Includes/connection.php');
         $sql="select * from student_data where Regno='".$GetID."'";
         $sql2="select * from past_courses where Regno='".$GetID."';";
         $sql3="select * from current_courses where Regno='".$GetID."';";
+        $sql4="select * from contributions where Regno='".$GetID."';";
+        $sql5="select * from current_courses where Regno='".$GetID."';";
+        $sql6="select * from current_courses where Regno='".$GetID."';";
         mysqli_select_db($con,"student_management");
         //ALTER TABLE student_data ADD CGPA VARCHAR(10) NOT NULL AFTER Password;
         //ALTER TABLE student_data ADD Sem INT(10) NOT NULL AFTER CGPA;
@@ -19,6 +22,7 @@ require_once('Includes/connection.php');
         $res=mysqli_query($con,$sql);
         $res2=mysqli_query($con,$sql2);
         $res3=mysqli_query($con,$sql3);
+        $res4=mysqli_query($con,$sql4);
         while($row=mysqli_fetch_assoc($res))
         {
             $StudentID= $row['Regno'];
@@ -163,6 +167,261 @@ require_once('Includes/connection.php');
                 <a href="studentacademicedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit</a>
             </div>
         </div>
+
+
+
+    <div class="col">        
+    <div class="card bg-dark text-white mt-3">
+        <h3 class="text-center py-3">
+                  Contributions
+        </h3>
+    </div>
+    </div>
+
+        
+        <div class="col-lg-12">
+            <div class="card mt-3">
+                <?php
+                $c=0;
+                $res4=true;
+                if(!$res4){
+                    echo "
+                    <div class=\"ml-5\">
+                    0 CONTRIBUTIONS!
+                    </div>";
+                }
+                else{
+
+                    //while($row4=mysqli_fetch_assoc($res4)){
+
+                        $c++;
+                                             
+                    echo "<table class=\"table table-striped \">
+                    <tr>
+                        <th>Contribution no:</th>
+                        <td>".$c."</td>
+                    </tr>
+                    <tr>
+                        <th>Organization name:</th>
+                        <td>"."Mozilla Firefox"."</td>
+                    </tr>
+                    <tr>
+    
+                        <th>Inside/Outside Vit:</th>
+                        <td>"."Inside Vit"."</td>
+    
+                     
+                    </tr>
+                    <tr>
+                        <th>Role:</th>
+                        <td>"."Web Developer"."</td>
+                    </tr>
+                    </table>";
+                    //}
+
+                }
+                
+
+               ?>
+            </div>
+            <div class="card mt-3 mb-5">
+            <a href="studentcontributionedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Contributions</a>
+            </div>
+        </div>
+
+  
+
+    
+    <div class="col">        
+    <div class="card bg-dark text-white mt-3">
+        <h3 class="text-center py-3">
+                  Achievements
+        </h3>
+    </div>
+    </div>
+
+    <div class="col-lg-12">
+            <div class="card mt-3">
+            <?php
+            $c=0;
+            $res5=true;
+            if(!$res5){
+                echo "
+                <div class=\"ml-5\">
+                0 Achievements!
+                </div>";
+            }
+            else{
+                //while($row5=mysqli_fetch_assoc($res5)){
+             
+                $c++;                            
+                echo "<table class=\"table table-striped \">
+                <tr>
+                    <th>Achievement no::</th>
+                    <td>".$c."</td>
+                </tr>
+                <tr>
+                    <th>Type:</th>
+                    <td>"."Award"."</td>
+                </tr>
+                <tr>
+
+                    <th>Description:</th>
+                    <td>"."Excellent Performance"."</td>
+
+                 
+                </tr>
+                <tr>
+                    <th>Year:</th>
+                    <td>"."2019"."</td>
+                </tr>
+                </table>";
+                //}
+
+            }
+
+               ?>
+            </div>
+            <div class="card mt-3 mb-5">
+            <a href="studentachievementedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Achievements</a>
+            </div>
+        </div>
+
+    <div class="col">        
+    <div class="card bg-dark text-white mt-3">
+        <h3 class="text-center py-3">
+                  Projects
+        </h3>
+    </div>
+    </div>
+
+    <div class="col-lg-12">
+            <div class="card mt-3">
+            <?php
+            $c=0;
+            $res6=true;
+            if(!$res6){
+                echo "
+                <div class=\"ml-5\">
+                0 Projects!
+                </div>";
+            }
+            else{
+                //while($row6=mysqli_fetch_assoc($res6)){
+             
+                                         
+                echo "<table class=\"table table-striped \">
+                <tr>
+                    <th>Title:</th>
+                    <td>"."Student Teacher Interaction Portal"."</td>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <td>"."Easy to interact"."</td>
+                </tr>
+                <tr>
+
+                    <th>Technologies Involved:</th>
+                        
+                    <td>"."PhP Apache-Server MySql"."</td>
+                            
+                      
+ 
+
+                 
+                </tr>
+                <tr>
+                    <th>Github/Demo Link:</th>
+                    <td>"."<a href=\"www.github.com\">www.github.com</a>"."</td>
+                </tr>
+                </table>";
+                //}
+
+            }
+
+               ?>
+
+            </div>
+            <div class="card mt-3 mb-5">
+            <a href="studentprojectedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Projects</a>
+            </div>
+        </div>
+
+
+    <div class="col">  
+    <div class="card bg-dark text-white mt-3">
+        <h3 class="text-center py-3">
+                  Internships
+        </h3>
+    </div>
+    </div>
+
+    <div class="col-lg-12">
+            <div class="card mt-3">
+            <?php
+            $c=0;
+            $res7=true;
+            if(!$res7){
+                echo "
+                <div class=\"ml-5\">
+                0 Projects!
+                </div>";
+            }
+            else{
+                //while($row7=mysqli_fetch_assoc($res7)){
+             
+                $c++;                          
+                echo "<table class=\"table table-striped \">
+                <tr>
+                    <th>Sr no:</th>
+                    <td>".$c."</td>
+                </tr>
+                <tr>
+                    <th>Company Name:</th>
+                    <td>"."Samsung"."</td>
+                </tr>
+                <tr>
+
+                    <th>Position/Role:</th>
+                        
+                    <td>"."Software Engineer"."</td>
+                            
+                      
+ 
+
+                 
+                </tr>
+                
+                </table>";
+                }
+
+            //}
+
+               ?>
+               
+            </div>
+            <div class="card mt-3 mb-5">
+            <a href="studentinternshipsedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Internships</a>
+            </div>
+        </div>
+
+
+        
+    <div class="col">  
+    <div class="card bg-dark text-white mt-3">
+        <h3 class="text-center py-3">
+                  LOR
+        </h3>
+    </div>
+    </div>
+    
+    <div class="col-lg-12 mb-5">
+            <div class="card mt-3">
+                <a href="studentlor.php?edit=<?php echo $StudentID?>" class="btn btn-secondary ">Letter of Recommendation</a>
+            </div>
+        </div>
+
+
     </div>
 
 
