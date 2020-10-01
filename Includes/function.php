@@ -96,7 +96,7 @@ function loginfun(){
     }
     if(isset($_SESSION['StudentID']))
     {
-        header("location:index.php");
+        header("location:view.php?success=".$_SESSION['StudentID']);
     }
 }
 

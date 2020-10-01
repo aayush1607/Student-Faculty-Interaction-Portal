@@ -11,7 +11,7 @@ require_once('Includes/header.php');
         <div class="card mt-5 m-2 p-3" style="width: 18rem">
           <img
             class="card-img-top"
-            src="./images/index.png"
+            src="images/index.png"
             alt="Card image cap"
           />
           <div class="card-body">
@@ -28,7 +28,7 @@ require_once('Includes/header.php');
         <div class="card mt-5 m-2 p-3" style="width: 18rem">
           <img
             class="card-img-top"
-            src="./images/teacherf.png"
+            src="images/teacherf.png"
             alt="Card image cap"
           />
           <div class="card-body">
