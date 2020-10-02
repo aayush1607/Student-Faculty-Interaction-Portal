@@ -14,7 +14,9 @@
     }
     ?>
 
-    <div class="container">
+    <div class="container" ng-app="app" ng-controller="search">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    
         <div class="row">
             <div class="col">
                 <div class="card bg-dark text-white mt-5">
@@ -35,18 +37,20 @@
                     </div>
 
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped" >
 
 
                         <tr>
-
-
-                        <form action="search.php" method="POST">
+                        <div class="form-inline mb-3">
+                        <input type="text" placeholder="Search RegNo." class="form-control"  ng-model="Searchtext.Reg" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" placeholder="Search Name" class="form-control"  ng-model="Searchtext.name" >
+                        </div>
+                        <!--<form action="search.php" method="POST">
                             <div class="form-inline mb-3">
                                 <input type="text" placeholder="Search" class="form-control">
                                 <button class="btn btn-success">Search</button>
                             </div>
-                        </form>
+                        </form>-->
                         </tr>
                         <tr class="bg-success text-white">
                             <td>Regno</td>
@@ -55,7 +59,11 @@
                             <td>Email</td>
                             <td colspan="6">Operation</td>
                         </tr>
-                        
+                    <script>
+                       var arrobj=[];
+                       var a=angular.module("app",[]);
+                       
+                       a.controller("search",function($scope){
                     <?php 
                     
                     while($row=mysqli_fetch_assoc($res))
@@ -65,22 +73,50 @@
                         $LName=$row['LName'];
                         $Branch=$row['Branch'];
                         $Email=$row['Email'];
+                    
 
+ 
                     ?>
-                    <tr >
-                        <td><?php echo $StudentID?></td>
-                        <td><?php echo $FName." ".$LName?></td>
-                        <td><?php echo $Branch?></td>
-                        <td><?php echo $Email?></td>
-                        <td><a href="view.php?success=<?php echo $StudentID?>" class="btn btn-success btn-sm">View</a></td>
-
-                    </tr>
-                                
-                <?php
-                }
+                    
+                       
+                       
+                       
+                   
+                    arrobj.push({Reg:"<?php echo $StudentID?>",name:"<?php echo $FName.' '.$LName?>",branch:"<?php echo $Branch?>",email:"<?php echo $Email?>"});
+                       
+                    
+                    $scope.arrobj=arrobj;
 
                     
+                    
+                
+                <?php
+                }
                 ?>
+                });
+                </script>
+                
+                    <tr ng-repeat="i in arrobj | filter:Searchtext">
+                        
+                     
+                    
+                        
+                        <td>{{i.Reg}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.branch}}</td>
+                        <td>{{i.email}}</td>
+                        <td><a href="view.php?success={{i.Reg}}" class="btn btn-success btn-sm">View</a></td> 
+                              
+                       
+                        
+                    </tr>
+                   
+                    
+                
+                                
+                
+                
+                
                     
                     </table>
                 </div>

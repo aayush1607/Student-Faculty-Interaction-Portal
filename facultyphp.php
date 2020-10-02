@@ -11,7 +11,7 @@
             $Empid=mysqli_real_escape_string($con,$_POST['empid']);
             $Pass=mysqli_real_escape_string($con,$_POST['password']);
 
-            $sql="select * from faculty_data where FacultyID ='".$Empid."' and FacultyPassword=MD5('".$Pass."')";
+            $sql="select * from faculty_data where FacultyID ='".$Empid."' and FacultyPassword='".$Pass."'";
             mysqli_select_db($con,"student_management");
             $res=mysqli_query($con,$sql);
             if($row=mysqli_fetch_assoc($res))
