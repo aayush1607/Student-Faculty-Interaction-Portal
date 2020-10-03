@@ -42,8 +42,7 @@
 
                         <tr>
                         <div class="form-inline mb-3">
-                        <input type="text" placeholder="Search RegNo." class="form-control"  ng-model="Searchtext.Reg" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="text" placeholder="Search Name" class="form-control"  ng-model="Searchtext.name" >
+                        <input type="text" placeholder="Search name or regno. " class="form-control"  ng-model="Searchtext" >
                         </div>
                         <!--<form action="search.php" method="POST">
                             <div class="form-inline mb-3">
@@ -64,6 +63,8 @@
                        var a=angular.module("app",[]);
                        
                        a.controller("search",function($scope){
+                       
+
                     <?php 
                     
                     while($row=mysqli_fetch_assoc($res))
@@ -93,10 +94,23 @@
                 <?php
                 }
                 ?>
+                 $scope.SearchByNameAndReg=function(field){
+                        if($scope.Searchtext==undefined){
+                              return true;
+                        }
+                        else{
+                             if(field.name.toLowerCase().indexOf($scope.Searchtext.toLowerCase()) != -1 || field.Reg.toLowerCase().indexOf($scope.Searchtext.toLowerCase()) != -1){
+                                  return true;
+                            }
+                        return false;
+                        }
+                   
+                        }
+                
                 });
                 </script>
                 
-                    <tr ng-repeat="i in arrobj | filter:Searchtext">
+                    <tr ng-repeat="i in arrobj | filter: SearchByNameAndReg">
                         
                      
                     
