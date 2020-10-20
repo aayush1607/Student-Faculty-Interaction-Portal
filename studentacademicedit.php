@@ -13,6 +13,7 @@
     while($row=mysqli_fetch_assoc($res)){
         $Sem=$row['Sem'];
         $CGPA=$row['CGPA'];
+        $regno=$row['Regno'];
     }
     $pastCourses= array();
     while($row2=mysqli_fetch_assoc($res2)){
@@ -49,7 +50,7 @@ require_once('includes/function.php');
                 <form action="update.php" method="POST" enctype="multipart/form-data">
               
                 
-                
+                <input type="text" value="<?php echo $regno?>" class="form-control mb-2" name='regno' readonly>
                 <input type="number" placeholder="Current Semester" name="Sem" class="form-control mb-2" value="<?php echo $Sem?>">
                 <input type="text" placeholder="your CGPA" name="cgpa" class="form-control mb-2" value="<?php echo $CGPA?>">
 <!-- 
@@ -63,16 +64,19 @@ require_once('includes/function.php');
 
                 <?php
                 $j=1;
+                $k=count($pastCourses);
                 for($i=0;$i < count($pastCourses); $i++){
                     $j+=$i;
-                    echo"<input type='text' placeholder='Past Course$j' name='Course$i' class='form-control mb-2' value='$pastCourses[$i]'>";
-
+                    echo"<input type='text' placeholder='Past Course$j' name='Coursep$i' class='form-control mb-2' value='$pastCourses[$i]'>";
+                                              
                 }
                 
                 ?>
                
                  <?php
                 $j=1;
+                $cc=count($currentCourses);
+                echo"<input type='number' value='$cc' name='sk' style='display:none;'>";
                 for($i=0;$i < count($currentCourses); $i++){
                     $j+=$i;
 
@@ -87,7 +91,7 @@ require_once('includes/function.php');
                 
                 
                 
-                <button class="btn btn-success" name="update">Update</button>
+                <button class="btn btn-success" name="updateacademic">Update</button>
 
                 </form >
                 </div>

@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <style>
+            
+            .a {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.a-header,
+.a-footer {
+  flex: none; 
+}
+
+.main {
+  display: flex;
+  flex: 1 0 auto; 
+  flex-direction: column;
+  background-color:lightblue;
+  padding: var(--space);
+}
+
+.b{
+  margin-top: var(--space);
+  height: 800px;
+  width: 600px;
+}
+
+.nav {
+  order: -1;
+}
+
+.nav,
+.side {
+  padding: 1em;
+  border-radius: 3px;
+  background-color:green;
+}
+
+@media (--break-lg) {
+  .main {
+    flex-direction: row;
+    
+  }
+  .b {
+    flex: 1;
+    padding: 0 var(--space-lg);
+    margin: 0;
+  }
+  .nav, .side {
+    flex: 0 0 12em;
+  }
+}
+        </style>
+    </head>
+<body class="a">
+    <header >Header</header>
+    <div class="main">
+      <main class="b">Main</main>
+      <nav class="nav">Nav Bar</nav>
+      <aside class="side">aSides</aside>
+    </div>
+    <footer>Footer</footer>
+  </body>
+  </html>

@@ -2,12 +2,37 @@
  require_once('includes/header.php');
  require_once('includes/connection.php');
  
-?>
-<?php
-require_once('includes/header.php');
-require_once('includes/function.php');
-?>
 
+if(isset($_GET['edit'])){
+    $GetID=$_GET['edit'];
+    $sql="select * from projects where Regno='".$GetID."'";
+    mysqli_select_db($con,"student_management");
+$res=mysqli_query($con,$sql);
+class Projects {
+    // Properties
+    public $id;
+    public $title;
+    public $desc;
+    public $tech;
+    public $link;
+    // Methods
+  
+  }
+  $i=0;
+  $s=array();
+  
+while($row=mysqli_fetch_assoc($res)){
+    $s[$i]=new Projects();
+    $s[$i]->id=$row['ID'];
+    $s[$i]->title=$row['Title'];
+    $s[$i]->desc=$row['Description'];
+    $s[$i]->tech=$row['Technologies'];
+    $s[$i]->link=$row['Link'];
+    $i++;
+}
+
+}
+?>
     <!---->
 <div class="container">
     <div class="row mb-5">
@@ -26,14 +51,22 @@ require_once('includes/function.php');
 
                 <form action="update.php" method="POST" enctype="multipart/form-data">
               
+                <?php
+                for($i=0;$i<count($s);$i++){
+                    $t=$s[$i]->title;
+                    $d=$s[$i]->desc;
+                    $te=$s[$i]->tech;
+                    $l=$s[$i]->link;
+                    $k=$i+1;
+                echo"<h1 align='center'>Project $k</h1><br>";
+                echo "<input type='text' placeholder='Project Title' name='title$i' class='form-control mb-2' value= '$t'>";
+                echo "<textarea placeholder='Project description' name='desc$i' rows='3' cols='8' class='form-control mb-2' >$d</textarea>";
                 
-                <input type="text" placeholder="Project Title" name="title" class="form-control mb-2" >
-                <textarea placeholder="Project description" name="desc" rows="3" cols="8" class="form-control mb-2"></textarea>
+                echo "<input type='text' placeholder='Technologies Involved' name='tech$i' class='form-control mb-2' value= '$te' >";
+                echo "<input type='text' placeholder='Github/Demo Link' name='link$i' class='form-control mb-2' value= '$l'>";
                 
-                <input type="text" placeholder="Technologies Involved" name="tech" class="form-control mb-2" >
-                <input type="text" placeholder="Github/Demo Link" name="link" class="form-control mb-2" >
-                
-                
+                }
+                ?>
                
                 
 <button class="btn btn-success" name="update">Update</button>
