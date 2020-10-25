@@ -53,6 +53,9 @@ require_once('includes/function.php');
                 <input type="text" value="<?php echo $regno?>" class="form-control mb-2" name='regno' readonly>
                 <input type="number" placeholder="Current Semester" name="Sem" class="form-control mb-2" value="<?php echo $Sem?>">
                 <input type="text" placeholder="your CGPA" name="cgpa" class="form-control mb-2" value="<?php echo $CGPA?>">
+                <br>
+                <h5>Past Courses:</h5>
+                
 <!-- 
                         <option value="null">Choose Branch</option>
                     
@@ -72,7 +75,9 @@ require_once('includes/function.php');
                 }
                 
                 ?>
-               
+                <br>
+                <h5>Current Courses:</h5>
+                
                  <?php
                 $j=1;
                 $cc=count($currentCourses);

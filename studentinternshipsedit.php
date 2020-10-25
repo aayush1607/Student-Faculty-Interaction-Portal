@@ -36,7 +36,7 @@ require_once('includes/function.php');
                 
                
                 
-<button class="btn btn-success" name="update">Update</button>
+<button class="btn btn-success" name="updateinternship">Update</button>
 
                 </form >
                 </div>

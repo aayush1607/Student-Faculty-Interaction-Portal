@@ -21,20 +21,7 @@
         }
     }
     else if(isset($_POST['updateinternship'])){
-        $FName=$_POST['FName'];
-        $LName=$_POST['LName'];
-        $Regno=$_POST['regno'];
-        $DOB=$_POST['DOB'];
-        $Email=$_POST['email'];
-        $branch=$_POST['branch'];
-        $pass=$_POST['password'];
-        $sql="UPDATE student_data SET FName='$FName',LName='$LName',DOB='$DOB',Email='$Email',Branch='$branch',Password='$pass' WHERE Regno='$Regno'";
-        if(mysqli_query($conn,$sql)){
-            echo "Successfully Updated";
-        }
-        else{
-            echo "Update failed!!";
-        }
+        echo "Update Internship details!!";
 
     }
     else if(isset($_POST['updatecontribution'])){
@@ -86,14 +73,30 @@
     }
     else if(isset($_POST['updateproject'])){
         $Regno=$_POST['regno'];
+        //$ID=$_POST['id'];
+        $count=$_POST['count'];
+       // echo $count;
+        //echo $Regno;
+        for($i=0;$i<$count;$i++){
+            $ID=$_POST["id$i"];
+            $title=$_POST["title$i"];
+            $desc=$_POST["desc$i"];
+            $tech=$_POST["tech$i"];
+            $link=$_POST["link$i"];
+            //echo "$ID <br>$title<br> $desc<br> $tech<br> $link<br><br><br>";
         
-        
-        $sql4="select * from projects where Regno='".$Regno."';";
-        $res2=mysqli_query($conn,$sql4);
-        $pastCourses= array();
-        while($row2=mysqli_fetch_assoc($res2)){
-            array_push($pastCourses,$row2['Course']);
+            $sql="UPDATE projects SET Title='$title',Description='$desc',Technologies='$tech', Link='$link' WHERE Regno='$Regno' AND ID='$ID'";
+            mysqli_query($conn,$sql);
         }
+        /*echo"<h1 align='center'>Project $k</h1><br>";
+        echo "<input type='text' placeholder='Project Title' name='title$i' class='form-control mb-2' value= '$t'>";
+        echo "<textarea placeholder='Project description' name='desc$i' rows='3' cols='8' class='form-control mb-2' >$d</textarea>";
+        
+        echo "<input type='text' placeholder='Technologies Involved' name='tech$i' class='form-control mb-2' value= '$te' >";
+        echo "<input type='text' placeholder='Github/Demo Link' name='link$i' class='form-control mb-2' value= '$l'>";
+        */
+        
+        echo "Update Sucessful";
 
     }
     
