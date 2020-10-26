@@ -1,6 +1,6 @@
 <?php
- require_once('includes/header.php');
- require_once('includes/connection.php');
+ require_once('Includes/header.php');
+ require_once('Includes/connection.php');
  
 
 if(isset($_GET['edit'])){
@@ -32,6 +32,7 @@ while($row=mysqli_fetch_assoc($res)){
 }
 
 }
+ 
 ?>
     <!---->
 <div class="container">
@@ -50,10 +51,12 @@ while($row=mysqli_fetch_assoc($res)){
                 <div class="card-body">
 
                 <form action="update.php" method="POST" enctype="multipart/form-data">
-                <input type="number" value='<?php echo count($s);?>' style="display:none;" name='count'>
+                <input type='number' value='<?php echo count($s);?>' name='count' style='display:none;'>
+                <input type='text' value='No' name='cout' style='display:none;'>
                 <input type="text" value='<?php echo $GetID;?>' style="display:none;" name='regno'>
-                <?php
                 
+                <?php
+                $k=0;
                 for($i=0;$i<count($s);$i++){
                     $id=$s[$i]->id;
                     $t=$s[$i]->title;
@@ -76,18 +79,38 @@ while($row=mysqli_fetch_assoc($res)){
                 echo"</div><br>";
                 }
                 ?>
+                <div id="New" >
+                   
+   
                
-                
+            </div>
+            <script>
+                var s=0;
+            </script>
+            <div class="mt-3">
                 <button class="btn btn-success" name="updateproject">Update</button>
-
+                <button class="btn btn-success" type="button" id='k' onclick=" add() ">+ Add Project</button>
+            </div>
+                <script>
+                    
+                    function add(){
+                        document.getElementById("k").style.display="none";
+               // document.getElementById("New").innerHTML+="+"<div class='card'><input type='number'  name='id"+n+"' class='form-control mb-2' value='"+n+"' style='display:none;'>"+"<input type='text' placeholder='Project Title' name='title"+n+"' class='form-control mb-2'>"+"<textarea placeholder='Project description' name='desc"+n+"' rows='3' cols='8' class='form-control mb-2' ></textarea>"+"<input type='text' placeholder='Technologies Involved' name='tech"+n+"' class='form-control mb-2'>"+"<input type='text' placeholder='Github/Demo Link' name='link"+n+"' class='form-control mb-2'>"+"<input type='number' value='"+n+"' style='display:none;' name='count'>"+"</div>";
+                //n=n+1;
+                document.getElementById("New").innerHTML+="<div class='card mt-3'><div class='card-title bg-dark rounded-top'><h3 class='text-center text-white py-3'>New Project</h3></div>"+"<?php echo "<input type='text'  name='id$k'  value='$k' style='display:none;'>";echo "<input type='text' placeholder='Project Title' name='title$k' class='form-control mb-2' required>";echo "<textarea placeholder='Project description' name='desc$k' rows='3' cols='8' class='form-control mb-2' required></textarea>";echo "<input type='text' placeholder='Technologies Involved' name='tech$k' class='form-control mb-2'  required>";echo "<input type='text' placeholder='Github/Demo Link' name='link$k' class='form-control mb-2' required>";echo "<input type='text' value='Yes' name='cout' style='display:none;'>";echo"</div><br>";?>";
+                    }
+                </script>
+  
+                
                 </form >
+                
               </div>
         
     </div>
 </div>
-<?php require_once('includes/footer.php');
+<?php require_once('Includes/footer.php');
 ?>
 
 <?php
-    require_once('includes/footer.php');
+    require_once('Includes/footer.php');
 ?>

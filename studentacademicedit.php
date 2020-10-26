@@ -1,8 +1,15 @@
 <?php
- require_once('includes/header.php');
- require_once('includes/connection.php');
- if(isset($_GET['edit'])){
+ require_once('Includes/header.php');
+ require_once('Includes/connection.php');
+
+if(isset($_GET['edit']) || isset($_GET['invalidC'])){
+    if(isset($_GET['edit']) ){
     $GetID=$_GET['edit'];
+    }
+    else if(isset($_GET['invalidC'])){
+        $GetID=$_GET['invalidC'];
+        echo "<div class='alert-danger card-title  rounded-top rounded-bottom text-center  m-auto col-lg-5 py-3' ><h5>Course is already registered</h5></div> ";
+    }
     $sql="select * from student_data where Regno='".$GetID."'";
     $sql2="select * from past_courses where Regno='".$GetID."';";
     $sql3="select * from current_courses where Regno='".$GetID."';";
@@ -25,10 +32,11 @@
         array_push($currentCourses,$row3['currCourses']);
     }
 }
+ 
 ?>
 <?php
-require_once('includes/header.php');
-require_once('includes/function.php');
+require_once('Includes/header.php');
+require_once('Includes/function.php');
 ?>
 
     <!---->
@@ -90,13 +98,30 @@ require_once('includes/function.php');
                 }
 
                 ?>
+                 
                 
                 
+                 <div id="New"></div>
+                <div id="Old"></div>
                 
-                
-                
-                
+                <div class="mt-3">
                 <button class="btn btn-success" name="updateacademic">Update</button>
+                <button class="btn btn-success" type="button" id='j' onclick=" addO() ">+ Past Course</button>
+                <button class="btn btn-success" type="button" id='k' onclick=" addN() ">+ New Course</button>
+                
+                </div>
+                
+                       <script>
+                    
+                    function addN(){
+                        document.getElementById("k").style.display="none";
+                    document.getElementById("New").innerHTML+="<div class='card mt-3'><div class='card-title bg-dark rounded-top'><h3 class='text-center text-white py-3'>Current  Course </h3></div><input type='text'  name='newCourse' placeholder='Course Title' class='form-control mb-2' required /></div><br>";
+                    }
+                    function addO(){
+                        document.getElementById("j").style.display="none";
+                document.getElementById("Old").innerHTML+="<div class='card mt-3'><div class='card-title bg-dark rounded-top'><h3 class='text-center text-white py-3'>Old Course </h3></div> <input type='text'  name='oldCourse' placeholder='Course Title' class='form-control mb-2' required /> </div> <br>";
+                    }
+                </script> 
 
                 </form >
                 </div>

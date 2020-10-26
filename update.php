@@ -68,6 +68,38 @@
         $sql1="UPDATE student_data SET CGPA='$cgpa',Sem='$Sem'WHERE Regno='$Regno'";
       
         mysqli_query($conn,$sql1);
+        if(isset($_POST['newCourse'])){
+        $curr=$_POST['newCourse'];
+        }
+        else{
+            $curr=FALSE;
+        }
+        if(isset($_POST['oldCourse'])){
+        $past=$_POST['oldCourse'];
+        }
+        else{
+            $past=FALSE;
+        }
+        if($curr){
+        //echo "$curr<br>";
+        if(null !== array_search($curr,$pastCourses) || null !==  array_search($curr,$currentCourses) ){
+            header("location:studentacademicedit.php?invalidC=$Regno");
+            //exit();
+        }
+        $sql12="Insert into current_courses (Regno,currCourses) values ('$Regno','$curr')";
+        mysqli_query($conn,$sql12);
+        }
+        if($past){
+        //echo "$past<br>";
+        if(null !== array_search($past,$pastCourses) || null !== array_search($past,$currentCourses) ){
+            header("location:studentacademicedit.php?invalidC=$Regno");
+            //exit();
+        }
+        $sql11="Insert into past_courses (Regno,Course) values ('$Regno','$past')";
+        
+        mysqli_query($conn,$sql11);
+        }
+
         echo "Successfully Updated";
       
     }
@@ -75,7 +107,9 @@
         $Regno=$_POST['regno'];
         //$ID=$_POST['id'];
         $count=$_POST['count'];
-       // echo $count;
+        $cond=$_POST['cout'];
+        //echo $count;
+        //echo $cond;
         //echo $Regno;
         for($i=0;$i<$count;$i++){
             $ID=$_POST["id$i"];
@@ -88,13 +122,22 @@
             $sql="UPDATE projects SET Title='$title',Description='$desc',Technologies='$tech', Link='$link' WHERE Regno='$Regno' AND ID='$ID'";
             mysqli_query($conn,$sql);
         }
-        /*echo"<h1 align='center'>Project $k</h1><br>";
-        echo "<input type='text' placeholder='Project Title' name='title$i' class='form-control mb-2' value= '$t'>";
-        echo "<textarea placeholder='Project description' name='desc$i' rows='3' cols='8' class='form-control mb-2' >$d</textarea>";
-        
-        echo "<input type='text' placeholder='Technologies Involved' name='tech$i' class='form-control mb-2' value= '$te' >";
-        echo "<input type='text' placeholder='Github/Demo Link' name='link$i' class='form-control mb-2' value= '$l'>";
-        */
+       
+        if($cond=="Yes"){
+           
+            $i=$count;
+            $ID=$i+1;
+            $title=$_POST["title$i"];
+            $desc=$_POST["desc$i"];
+            $tech=$_POST["tech$i"];
+            $link=$_POST["link$i"];
+            //echo"$title $desc $ID $Regno $tech $link";
+            $sql6="Insert into projects (ID,Regno,Title,Description,Technologies,Link) values ('$ID','$Regno','$title','$desc','$tech','$link')";
+            mysqli_query($conn,$sql6);
+            
+            
+        }
+
         
         echo "Update Sucessful";
 

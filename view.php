@@ -12,6 +12,7 @@ require_once('Includes/connection.php');
         $sql4="select * from contributions where Regno='".$GetID."';";
         $sql5="select * from current_courses where Regno='".$GetID."';";
         $sql6="select * from current_courses where Regno='".$GetID."';";
+        
         mysqli_select_db($con,"student_management");
         //ALTER TABLE student_data ADD CGPA VARCHAR(10) NOT NULL AFTER Password;
         //ALTER TABLE student_data ADD Sem INT(10) NOT NULL AFTER CGPA;
@@ -23,6 +24,7 @@ require_once('Includes/connection.php');
         $res2=mysqli_query($con,$sql2);
         $res3=mysqli_query($con,$sql3);
         $res4=mysqli_query($con,$sql4);
+        
         while($row=mysqli_fetch_assoc($res))
         {
             $StudentID= $row['Regno'];
@@ -286,7 +288,7 @@ require_once('Includes/connection.php');
             <a href="studentachievementedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Achievements</a>
             </div>
         </div>
-
+    
     <div class="col">        
     <div class="card bg-dark text-white mt-3">
         <h3 class="text-center py-3">
@@ -294,9 +296,10 @@ require_once('Includes/connection.php');
         </h3>
     </div>
     </div>
-
-    <div class="col-lg-12">
-            <div class="card mt-3">
+    
+    <div class="col-lg-12">  
+   
+            
             <?php
             $c=0;
             $res6=true;
@@ -307,45 +310,102 @@ require_once('Includes/connection.php');
                 </div>";
             }
             else{
-                //while($row6=mysqli_fetch_assoc($res6)){
-             
-                                         
-                echo "<table class=\"table table-striped \">
-                <tr>
-                    <th>Title:</th>
-                    <td>"."Student Teacher Interaction Portal"."</td>
-                </tr>
-                <tr>
-                    <th>Description:</th>
-                    <td>"."Easy to interact"."</td>
-                </tr>
-                <tr>
-
-                    <th>Technologies Involved:</th>
+                
+                     
+                 
+                
+                $sql7="select * from projects where Regno='".$GetID."';";
+                $res6=mysqli_query($con,$sql7);
+                class Projects {
+    
+                    public $id;
+                    public $title;
+                    public $desc;
+                    public $tech;
+                    public $link;
+                    
+                  
+                  }
+                  $i=0;
+                  $s=array();
+                  
+                  
+                while($row6=mysqli_fetch_assoc($res6)){
+                    $s[$i]=new Projects();
+                    $s[$i]->id=$row6['ID'];
+                    $s[$i]->title=$row6['Title'];
+                    $s[$i]->desc=$row6['Description'];
+                    $s[$i]->tech=$row6['Technologies'];
+                    $s[$i]->link=$row6['Link'];
+                    $i++;
+                }
+                
+                
+                 for($i=0;$i<count($s);$i++){
+                    $id=$s[$i]->id;
+                    $t=$s[$i]->title;
+                    $d=$s[$i]->desc;
+                    $te=$s[$i]->tech;
+                    $l=$s[$i]->link;
+                   //echo"$te";
+                
+                ?>
+                        <div align="center">
+                        <div class="col-lg-9"> 
+                        <div class="card bg-dark text-white mt-3">
+                        <h3 class="text-center py-3">
+                           Project <?php echo $i+1?>
+                        </h3>
+                        </div>
+                        </div>
+    
                         
-                    <td>"."PhP Apache-Server MySql"."</td>
+                        <div class="col-lg-9">  
+                        <div class="card mt-3" >
+                            
+                           <table class="table table-striped "  >    
+                                <tr>
+                                    <th>Title:</th>
+                                    <td><?php echo "$t";?></td>
+                                </tr>
+                                <tr>
+                                    <th>Description:</th>
+                                    <td><?php echo "$d";?></td>
+                                </tr>
+                                <tr>
+
+                                    <th>Technologies Involved:</th>
+                        
+                                    <td><?php echo "$te";?></td>
                             
                       
  
 
                  
-                </tr>
-                <tr>
-                    <th>Github/Demo Link:</th>
-                    <td>"."<a href=\"www.github.com\">www.github.com</a>"."</td>
-                </tr>
-                </table>";
-                //}
-
+                                </tr>
+                                <tr>
+                                    <th>Github/Demo Link:</th>
+                                    <td align="left"><a href=<?php echo "$l";?>><?php echo "$l";?></a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        </div>
+                        </div>
+                    
+                
+         
+                
+            <?php
+             }   
             }
 
                ?>
+           
 
-            </div>
-            <div class="card mt-3 mb-5">
-            <a href="studentprojectedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Projects</a>
-            </div>
-        </div>
+<div class="card mt-3 mb-5">
+        <a href="studentprojectedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Projects</a>
+</div>
+</div>
 
 
     <div class="col">  
