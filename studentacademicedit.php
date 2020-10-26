@@ -1,15 +1,15 @@
 <?php
  require_once('Includes/header.php');
  require_once('Includes/connection.php');
-
-if(isset($_GET['edit']) || isset($_GET['invalidC'])){
-    if(isset($_GET['edit']) ){
+//|| isset($_GET['invalidC'])
+if(isset($_GET['edit']) ){
+    
     $GetID=$_GET['edit'];
-    }
-    else if(isset($_GET['invalidC'])){
+    
+    /*else if(isset($_GET['invalidC'])){
         $GetID=$_GET['invalidC'];
         echo "<div class='alert-danger card-title  rounded-top rounded-bottom text-center  m-auto col-lg-5 py-3' ><h5>Course is already registered</h5></div> ";
-    }
+    }*/
     $sql="select * from student_data where Regno='".$GetID."'";
     $sql2="select * from past_courses where Regno='".$GetID."';";
     $sql3="select * from current_courses where Regno='".$GetID."';";
@@ -78,7 +78,7 @@ require_once('Includes/function.php');
                 $k=count($pastCourses);
                 for($i=0;$i < count($pastCourses); $i++){
                     $j+=$i;
-                    echo"<input type='text' placeholder='Past Course$j' name='Coursep$i' class='form-control mb-2' value='$pastCourses[$i]'>";
+                    echo"<input type='text' placeholder='Past Course' name='Coursep$i' class='form-control mb-2' value='$pastCourses[$i]'>";
                                               
                 }
                 
@@ -93,7 +93,7 @@ require_once('Includes/function.php');
                 for($i=0;$i < count($currentCourses); $i++){
                     $j+=$i;
 
-                    echo"<input type='text' placeholder='Current Course$j' name='Course$i' class='form-control mb-2' value='$currentCourses[$i]'>";
+                    echo"<input type='text' placeholder='Current Course' name='Course$i' class='form-control mb-2' value='$currentCourses[$i]'>";
 
                 }
 
