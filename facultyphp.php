@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once('includes/connection.php');
+    require_once('Includes/connection.php');
     if(isset($_POST['login'])){
 
         if(empty($_POST['empid']) || empty($_POST['password']))

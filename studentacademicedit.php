@@ -129,9 +129,9 @@ require_once('Includes/function.php');
         </div>
     </div>
 </div>
-<?php require_once('includes/footer.php');
+<?php require_once('Includes/footer.php');
 ?>
 
 <?php
-    require_once('includes/footer.php');
+    require_once('Includes/footer.php');
 ?>
