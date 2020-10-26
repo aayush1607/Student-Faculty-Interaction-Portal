@@ -1,6 +1,6 @@
 <?php
- require_once('includes/header.php');
- require_once('includes/connection.php');
+ require_once('Includes/header.php');
+ require_once('Includes/connection.php');
  
 ?>
 <?php
@@ -60,9 +60,9 @@ require_once('Includes/function.php');
         </div>
     </div>
 </div>
-<?php require_once('includes/footer.php');
+<?php require_once('Includes/footer.php');
 ?>
 
 <?php
-    require_once('includes/footer.php');
+    require_once('Includes/footer.php');
 ?>
