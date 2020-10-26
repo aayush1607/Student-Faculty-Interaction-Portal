@@ -84,7 +84,7 @@
         //echo "$curr<br>";
         if(null !== array_search($curr,$pastCourses) || null !==  array_search($curr,$currentCourses) ){
             header("location:studentacademicedit.php?invalidC=$Regno");
-            //exit();
+            exit();
         }
         $sql12="Insert into current_courses (Regno,currCourses) values ('$Regno','$curr')";
         mysqli_query($conn,$sql12);
@@ -93,7 +93,7 @@
         //echo "$past<br>";
         if(null !== array_search($past,$pastCourses) || null !== array_search($past,$currentCourses) ){
             header("location:studentacademicedit.php?invalidC=$Regno");
-            //exit();
+            exit();
         }
         $sql11="Insert into past_courses (Regno,Course) values ('$Regno','$past')";
         
