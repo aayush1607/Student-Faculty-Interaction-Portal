@@ -43,19 +43,26 @@
                         <tr>
                         <div class="form-inline mb-3">
                         <input type="text" placeholder="Search name or regno. " class="form-control"  ng-model="Searchtext" >
-                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <!--<form action="search.php" method="POST">
                             <div class="form-inline mb-3">
                                 <input type="text" placeholder="Search" class="form-control">
                                 <button class="btn btn-success">Search</button>
                             </div>
                         </form>-->
+                       
+                        <input type="text" placeholder="Search Skills " class="form-control"  ng-model="SearchSkills" >
+                        </div>
                         </tr>
                         <tr class="bg-success text-white">
                             <td>Regno</td>
                             <td>Name</td>
                             <td>Branch</td>
                             <td>Email</td>
+                            <td>Skills</td>
                             <td colspan="6">Operation</td>
                         </tr>
                     <script>
@@ -65,25 +72,37 @@
                        a.controller("search",function($scope){
                        
 
-                    <?php 
+                        <?php 
                     
+                   
                     while($row=mysqli_fetch_assoc($res))
                     {
+                        //$i=0;   
+                        $skills="";            
+                        //unset($skills);
                         $StudentID= $row['Regno'];
                         $FName=$row['FName'];
                         $LName=$row['LName'];
                         $Branch=$row['Branch'];
                         $Email=$row['Email'];
-                    
-
- 
+                        $sql2="SELECT * FROM projects WHERE Regno='$StudentID'";
+                        $res2=mysqli_query($con,$sql2);
+                        
+                   while($row2=mysqli_fetch_assoc($res2)){
+                         $m=$row2['Technologies'];
+                        //array_push($skills,$m);
+                        //$i++;
+                        $skills=$skills.$m;
+                         
+                   }
+                       
                     ?>
                     
                        
                        
                        
                    
-                    arrobj.push({Reg:"<?php echo $StudentID?>",name:"<?php echo $FName.' '.$LName?>",branch:"<?php echo $Branch?>",email:"<?php echo $Email?>"});
+                    arrobj.push({Reg:"<?php echo $StudentID?>",name:"<?php echo $FName.' '.$LName?>",branch:"<?php echo $Branch?>",email:"<?php echo $Email?>",skills:"<?php echo $skills;?>"});
                        
                     
                     $scope.arrobj=arrobj;
@@ -95,17 +114,53 @@
                 }
                 ?>
                  $scope.SearchByNameAndReg=function(field){
-                        if($scope.Searchtext==undefined){
+                        if($scope.Searchtext==undefined && $scope.SearchSkills==undefined){
                               return true;
                         }
                         else{
-                             if(field.name.toLowerCase().indexOf($scope.Searchtext.toLowerCase()) != -1 || field.Reg.toLowerCase().indexOf($scope.Searchtext.toLowerCase()) != -1){
+                            if($scope.Searchtext!=undefined && $scope.SearchSkills!=undefined){
+                             if((field.name.toLowerCase().indexOf($scope.Searchtext.toLowerCase()) != -1 || field.Reg.toLowerCase().indexOf($scope.Searchtext.toLowerCase()) != -1 ) && field.skills.toLowerCase().indexOf($scope.SearchSkills.toLowerCase()) != -1){
                                   return true;
                             }
-                        return false;
+                            else{
+                                return false;
+                            }
+                            
+                            }
+                            else if($scope.Searchtext!=undefined ){
+                             if(field.name.toLowerCase().indexOf($scope.Searchtext.toLowerCase()) != -1 || field.Reg.toLowerCase().indexOf($scope.Searchtext.toLowerCase()) != -1 ){
+                                  return true;
+                            }
+                            else{
+                                return false;
+                            }
+                            }
+                            else if($scope.SearchSkills!=undefined){
+                             if(field.skills.toLowerCase().indexOf($scope.SearchSkills.toLowerCase()) != -1){
+                                  return true;
+                            }
+                            else{
+                                return false;
+                            }
+                            
+                            }
+
+                            
+                            }
+                            // if($scope.SearchSkills!=undefined)
+                            // {
+                            //     if(field.skills.toLowerCase().indexOf($scope.SearchSkills.toLowerCase()) != -1 ){
+                            //         return true;
+                            //     }
+                            //     else{
+                            //     return false;
+                            //     }
+                            
+                        //}
+                        
                         }
                    
-                        }
+                        
                 
                 });
                 </script>
@@ -119,13 +174,15 @@
                         <td>{{i.name}}</td>
                         <td>{{i.branch}}</td>
                         <td>{{i.email}}</td>
+                        <td>{{i.skills}}</td>
+                        
+                      
                         <td><a href="view.php?success={{i.Reg}}" class="btn btn-success btn-sm">View</a></td> 
                               
-                       
-                        
+                    
                     </tr>
                    
-                    
+                   
                 
                                 
                 
