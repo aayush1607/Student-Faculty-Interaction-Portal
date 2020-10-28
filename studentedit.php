@@ -18,7 +18,7 @@
             $DOB=$row['DOB'];
             $Branch=$row['Branch'];
             $Email=$row['Email'];
-            $Pass=$row['Password'];
+            $Pass=MD5($row['Password']);
             
         }
     }

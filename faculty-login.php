@@ -28,8 +28,17 @@ require_once('Includes/function.php');
                     {
                             echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
                     }
-
-                    if(isset($_SESSION['Faculty']))
+                    if(isset($_GET['naccess']))
+                    {
+                        echo '<div class="alert alert-danger text-center"><img src="images/pdenied.png" alt="X ">'."Please Login First".'</div>';
+                    }
+                    if(isset($_SESSION['StudentID']))
+                    {
+                        header("location:view.php?success=".$_SESSION['StudentID']."&faccess");
+                        
+                    }
+                    
+                    if(isset($_SESSION['Faculty']) and !(isset($_SESSION['StudentID'])))
                     {
                         header("location:faculty-view.php");
                     }

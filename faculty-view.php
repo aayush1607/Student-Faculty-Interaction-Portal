@@ -1,6 +1,10 @@
 <?php
     require_once('Includes/header.php');
     require_once('Includes/connection.php');
+    if(isset($_GET['saccess']))
+    {
+        echo '<div class="alert alert-danger text-center"><img src="images/pdenied.png" alt="X ">'."Please Logout first from this faculty account".'</div>';
+    }
     if(isset($_SESSION['Faculty']))
     {
 
@@ -10,7 +14,7 @@
         $res=mysqli_query($con,$sql);
     }
     else{
-        header("location:faculty-login.php");
+        header("location:faculty-login.php?naccess");
     }
     ?>
 
