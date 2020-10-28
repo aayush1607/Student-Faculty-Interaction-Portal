@@ -94,6 +94,16 @@ function loginfun(){
         echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
 
     }
+    if(isset($_GET['naccess']))
+    {
+        $msg="Please Login First";
+        echo '<div class="alert alert-danger text-center"><img src="images/pdenied.png" alt="X ">'.$msg.'</div>';
+    }
+    if(isset($_SESSION['Faculty']))
+    {
+        header("location:faculty-view.php?success=".$_SESSION['Faculty']."&saccess");
+        
+    }
     if(isset($_SESSION['StudentID']))
     {
         header("location:view.php?success=".$_SESSION['StudentID']);

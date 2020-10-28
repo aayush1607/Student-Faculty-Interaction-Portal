@@ -3,7 +3,12 @@
 require_once('Includes/header.php');
 require_once('Includes/connection.php');
 
-    if(isset($_SESSION['StudentID']) || $_SESSION['Faculty'])
+    if(isset($_GET['faccess']))
+    {
+        echo '<div class="alert alert-danger text-center"><img src="images/pdenied.png" alt="X ">'."Please Logout first from this student account".'</div>';
+    }
+
+    if(isset($_SESSION['StudentID']) || isset($_SESSION['Faculty']))
     {
         $_SESSION['GET']=$GetID=$_GET['success'];
         $sql="select * from student_data where Regno='".$GetID."'";
@@ -46,7 +51,10 @@ require_once('Includes/connection.php');
         
 
     }
-    require_once('Includes/footer.php');
+    else{
+        header("location:login.php?naccess");
+    }
+
 
 
 
@@ -182,50 +190,94 @@ require_once('Includes/connection.php');
 
         
         <div class="col-lg-12">
-            <div class="card mt-3">
+            
                 <?php
                 $c=0;
-                $res4=true;
-                if(!$res4){
-                    echo "
-                    <div class=\"ml-5\">
-                    0 CONTRIBUTIONS!
-                    </div>";
+                $res4=mysqli_query($con,$sql4);
+
+                class Contributions{
+
+                    public $id;
+                    public $oname;
+                    public $iovit;
+                    public $role;
+                
+                }
+                $i=0;
+                $s=array();
+
+                while($row4=mysqli_fetch_assoc($res4))
+                {
+                    $s[$i]=new Contributions();
+                    $s[$i]->id=$row4['ID'];
+                    $s[$i]->oname=$row4['Oname'];
+                    $s[$i]->iovit=$row4['IOvit'];
+                    $s[$i]->role=$row4['Role'];
+                    $i++;
+                }
+                if(!count($s)){
+                    $msg="0 Contributions!";
+                    echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
                 }
                 else{
 
-                    //while($row4=mysqli_fetch_assoc($res4)){
-
-                        $c++;
-                                             
-                    echo "<table class=\"table table-striped \">
-                    <tr>
-                        <th>Contribution no:</th>
-                        <td>".$c."</td>
-                    </tr>
-                    <tr>
-                        <th>Organization name:</th>
-                        <td>"."Mozilla Firefox"."</td>
-                    </tr>
-                    <tr>
+                    
+                    for($i=0;$i<count($s);$i++){
+                        $id=$s[$i]->id;
+                        $on=$s[$i]->oname;
+                        $io=$s[$i]->iovit;
+                        $rl=$s[$i]->role;
+                       
+                    
+                    ?>
+                     <div align="center">
+                        <div class="col-lg-9"> 
+                        <div class="card bg-dark text-white mt-3">
+                        <h3 class="text-center py-3">
+                           Contribution <?php echo $i+1?>
+                        </h3>
+                        </div>
+                        </div>
     
-                        <th>Inside/Outside Vit:</th>
-                        <td>"."Inside Vit"."</td>
-    
-                     
-                    </tr>
-                    <tr>
-                        <th>Role:</th>
-                        <td>"."Web Developer"."</td>
-                    </tr>
-                    </table>";
-                    //}
+                        
+                        <div class="col-lg-9">  
+                        <div class="card mt-3" >
+                            
+                           <table class="table table-striped "  >    
+                                <tr>
+                                    <th>Organization Name:</th>
+                                    <td><?php echo "$on";?></td>
+                                </tr>
+                                <tr>
+                                    <th>Inside/Outside VIT:</th>
+                                    <td><?php echo "$io";?></td>
+                                </tr>
+                                <tr>
 
-                }
+                                    <th>Role:</th>
+                        
+                                    <td><?php echo "$rl";?></td>
+                            
+                      
+ 
+
+                 
+                                </tr>
+                                
+                            </table>
+                        </div>
+                        </div>
+                        </div>
+                    
                 
+         
+                
+            <?php
+             }   
+            }
 
                ?>
-            </div>
+     
             <div class="card mt-3 mb-5">
             <a href="studentcontributionedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Contributions</a>
             </div>
@@ -243,47 +295,92 @@ require_once('Includes/connection.php');
     </div>
 
     <div class="col-lg-12">
-            <div class="card mt-3">
+          
             <?php
             $c=0;
-            $res5=true;
-            if(!$res5){
-                echo "
-                <div class=\"ml-5\">
-                0 Achievements!
-                </div>";
+            $sql="select * from achievements where Regno='".$GetID."';";
+            $res5=mysqli_query($con,$sql);
+
+            class Achievements{
+                public $id;
+                public $type;
+                public $des;
+                public $year;
+                            
+            }
+            $i=0;
+            $s=array();
+            while($row5=mysqli_fetch_assoc($res5))
+            {
+                $s[$i]=new Achievements();
+                $s[$i]->id=$row5['ID'];
+                $s[$i]->type=$row5['Type'];
+                $s[$i]->des=$row5['Description'];
+                $s[$i]->year=$row5['Year'];
+                $i++;
+            }
+            if(!count($s)){
+                $msg="0 Achievements!";
+                echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
             }
             else{
-                //while($row5=mysqli_fetch_assoc($res5)){
+
+                
+                for($i=0;$i<count($s);$i++){
+                    $id=$s[$i]->id;
+                    $ty=$s[$i]->type;
+                    $ds=$s[$i]->des;
+                    $yr=$s[$i]->year;
+                   
+                
+                ?>
+                 <div align="center">
+                    <div class="col-lg-9"> 
+                    <div class="card bg-dark text-white mt-3">
+                    <h3 class="text-center py-3">
+                       Achievement <?php echo $i+1?>
+                    </h3>
+                    </div>
+                    </div>
+
+                    
+                    <div class="col-lg-9">  
+                    <div class="card mt-3" >
+                        
+                       <table class="table table-striped "  >    
+                            <tr>
+                                <th>Type:</th>
+                                <td><?php echo "$ty";?></td>
+                            </tr>
+                            <tr>
+                                <th>Description:</th>
+                                <td><?php echo "$ds";?></td>
+                            </tr>
+                            <tr>
+
+                                <th>Year:</th>
+                    
+                                <td><?php echo "$yr";?></td>
+                        
+                  
+
+
              
-                $c++;                            
-                echo "<table class=\"table table-striped \">
-                <tr>
-                    <th>Achievement no:</th>
-                    <td>".$c."</td>
-                </tr>
-                <tr>
-                    <th>Type:</th>
-                    <td>"."Award"."</td>
-                </tr>
-                <tr>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                    </div>
+                    </div>
+                
+            
+     
+            
+        <?php
+         }   
+        }
 
-                    <th>Description:</th>
-                    <td>"."Excellent Performance"."</td>
-
-                 
-                </tr>
-                <tr>
-                    <th>Year:</th>
-                    <td>"."2019"."</td>
-                </tr>
-                </table>";
-                //}
-
-            }
-
-               ?>
-            </div>
+           ?>
             <div class="card mt-3 mb-5">
             <a href="studentachievementedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Achievements</a>
             </div>
@@ -302,43 +399,43 @@ require_once('Includes/connection.php');
             
             <?php
             $c=0;
-            $res6=true;
-            if(!$res6){
-                echo "
-                <div class=\"ml-5\">
-                0 Projects!
-                </div>";
+            $sql7="select * from projects where Regno='".$GetID."';";
+            $res6=mysqli_query($con,$sql7);
+            
+            class Projects {
+    
+                public $id;
+                public $title;
+                public $desc;
+                public $tech;
+                public $link;
+                
+              
+              }
+              $i=0;
+              $s=array();
+              
+              
+            while($row6=mysqli_fetch_assoc($res6)){
+                $s[$i]=new Projects();
+                $s[$i]->id=$row6['ID'];
+                $s[$i]->title=$row6['Title'];
+                $s[$i]->desc=$row6['Description'];
+                $s[$i]->tech=$row6['Technologies'];
+                $s[$i]->link=$row6['Link'];
+                $i++;
+            }
+            if(!count($s)){
+                $msg="0 Projects!";
+                echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
+                
             }
             else{
                 
                      
                  
                 
-                $sql7="select * from projects where Regno='".$GetID."';";
-                $res6=mysqli_query($con,$sql7);
-                class Projects {
-    
-                    public $id;
-                    public $title;
-                    public $desc;
-                    public $tech;
-                    public $link;
-                    
-                  
-                  }
-                  $i=0;
-                  $s=array();
-                  
-                  
-                while($row6=mysqli_fetch_assoc($res6)){
-                    $s[$i]=new Projects();
-                    $s[$i]->id=$row6['ID'];
-                    $s[$i]->title=$row6['Title'];
-                    $s[$i]->desc=$row6['Description'];
-                    $s[$i]->tech=$row6['Technologies'];
-                    $s[$i]->link=$row6['Link'];
-                    $i++;
-                }
+
                 
                 
                  for($i=0;$i<count($s);$i++){
@@ -417,49 +514,84 @@ require_once('Includes/connection.php');
     </div>
 
     <div class="col-lg-12">
-            <div class="card mt-3">
+            
             <?php
             $c=0;
-            $res7=true;
-            if(!$res7){
-                echo "
-                <div class=\"ml-5\">
-                0 Projects!
-                </div>";
+            $sql="select * from internships where Regno='".$GetID."'";
+            $res7=mysqli_query($con,$sql);
+            class Internships{
+
+                public $id;
+                public $cname;
+                public $role;
+            
+            }
+
+            $i=0;
+            $s=array();
+            while($row7=mysqli_fetch_assoc($res7))
+            {
+                $s[$i]=new Internships();
+                $s[$i]->id=$row7['ID'];
+                $s[$i]->cname=$row7['Cname'];
+                $s[$i]->role=$row7['Role'];
+                $i++;
+            }
+            if(!count($s)){
+                $msg="0 Internships!";
+                echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
             }
             else{
-                //while($row7=mysqli_fetch_assoc($res7)){
-             
-                $c++;                          
-                echo "<table class=\"table table-striped \">
-                <tr>
-                    <th>Sr no:</th>
-                    <td>".$c."</td>
-                </tr>
-                <tr>
-                    <th>Company Name:</th>
-                    <td>"."Samsung"."</td>
-                </tr>
-                <tr>
 
-                    <th>Position/Role:</th>
-                        
-                    <td>"."Software Engineer"."</td>
-                            
-                      
- 
-
-                 
-                </tr>
+                    
+                for($i=0;$i<count($s);$i++){
+                    $id=$s[$i]->id;
+                    $cn=$s[$i]->cname;
+                    $rl=$s[$i]->role;
+                   
                 
-                </table>";
-                }
+                ?>
+                 <div align="center">
+                    <div class="col-lg-9"> 
+                    <div class="card bg-dark text-white mt-3">
+                    <h3 class="text-center py-3">
+                       Internship <?php echo $i+1?>
+                    </h3>
+                    </div>
+                    </div>
 
-            //}
+                    
+                    <div class="col-lg-9">  
+                    <div class="card mt-3" >
+                        
+                       <table class="table table-striped "  >    
+                            <tr>
+                                <th>Company Name:</th>
+                                <td><?php echo "$cn";?></td>
+                            </tr>
+                            <tr>
+
+                                <th>Role:</th>
+                    
+                                <td><?php echo "$rl";?></td>
+                        
+                            </tr>
+                            
+                        </table>
+                    </div>
+                    </div>
+                    </div>
+                
+            
+     
+            
+        <?php
+         }   
+        }           
 
                ?>
                
-            </div>
+
             <div class="card mt-3 mb-5">
             <a href="studentinternshipsedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Internships</a>
             </div>
@@ -499,3 +631,8 @@ else{
 ?>
 
 </div>
+
+    
+<?php
+    require_once('Includes/footer.php');
+?>
