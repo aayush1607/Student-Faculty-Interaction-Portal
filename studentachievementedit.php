@@ -3,6 +3,7 @@
  require_once('Includes/connection.php');
 
 
+
 if(isset($_GET['edit'])){
     $GetID=$_GET['edit'];
     $sql="select * from achievements where Regno='".$GetID."'";
@@ -28,6 +29,7 @@ class Achievements{
   }
 
 }
+
 ?>
 
 
@@ -149,32 +151,10 @@ class Achievements{
 </div>
 
 
+
 <?php
     require_once('Includes/footer.php');
 ?>
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
