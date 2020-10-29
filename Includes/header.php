@@ -55,6 +55,8 @@
 
 if(isset($_SESSION['StudentID']) || isset($_SESSION['Faculty']))
 {
+  if(isset($_GET['success']))
+  {
     $_SESSION['GET']=$GetID=$_GET['success'];
     if($_SESSION['GET']==$_SESSION['StudentID'])
     echo '
@@ -72,18 +74,41 @@ if(isset($_SESSION['StudentID']) || isset($_SESSION['Faculty']))
         </div>
       </li>   
     </ul>
-  </div>
+  </div>';
     
   
     
-  <li class="nav-item ml-5 mt-2">
-    <form action="logout.php" method="POST">
-    <button class="btn btn-outline-primary" name="logout">Logout</button>
-    </form></li>';
+
   
 
 
 
+}
+if(isset($_GET['edit']))
+{
+  $_SESSION['GET']=$GetID=$_GET['edit'];
+  if($_SESSION['GET']==$_SESSION['StudentID'])
+  echo '
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbar-list-4">
+  <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src="images/default.png" width="40" height="40" class="rounded-circle">
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="view.php?success='.$GetID.'">Dashboard</a>
+      </div>
+    </li>   
+  </ul>
+</div>';
+}
+echo '  <li class="nav-item ml-5 mt-2">
+<form action="logout.php" method="POST">
+<button class="btn btn-outline-primary" name="logout">Logout</button>
+</form></li>';
 }
 else
                         {
