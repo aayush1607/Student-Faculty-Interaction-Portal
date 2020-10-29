@@ -17,7 +17,7 @@ require_once('Includes/connection.php');
         $sql4="select * from contributions where Regno='".$GetID."';";
         $sql5="select * from current_courses where Regno='".$GetID."';";
         $sql6="select * from current_courses where Regno='".$GetID."';";
-        
+        $sql9="select * from lor where Regno='".$GetID."';";
         mysqli_select_db($con,"student_management");
         //ALTER TABLE student_data ADD CGPA VARCHAR(10) NOT NULL AFTER Password;
         //ALTER TABLE student_data ADD Sem INT(10) NOT NULL AFTER CGPA;
@@ -593,6 +593,7 @@ require_once('Includes/connection.php');
                
 
             <div class="card mt-3 mb-5">
+            
             <a href="studentinternshipsedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Internships</a>
             </div>
         </div>
@@ -605,10 +606,39 @@ require_once('Includes/connection.php');
                   LOR
         </h3>
     </div>
-    </div>
-    
     <div class="col-lg-12 mb-5">
-            <div class="card mt-3">
+    <div class="card mt-3">
+    <table class="table table-striped "  >
+    <tr><th>Faculty:</th><th>view</th></tr>
+    <?php
+    $res10=mysqli_query($con,$sql9);
+    $arr=array();
+    while($row=mysqli_fetch_assoc($res10)){
+
+    $fid=$row['FacultyID'];
+    $sqlfac="select * from faculty_data where FacultyID='$fid'";
+        
+
+        $result=mysqli_query($con,$sqlfac);
+        while($row=mysqli_fetch_assoc($result)){
+            $fname=$row['FacultyName'];
+            
+        }
+    
+                            echo "<tr>".
+                                "<th> $fname</th>".
+                                "<td><a href='pdf.php?Faculty=$fid' class='btn btn-success btn-sl'>View</a></td>".
+                            "</tr>";
+    }
+                            ?>
+   
+                            
+    </table>
+    
+
+    
+    
+           
                 <a href="studentlor.php?edit=<?php echo $StudentID?>" class="btn btn-secondary ">Letter of Recommendation</a>
             </div>
         </div>

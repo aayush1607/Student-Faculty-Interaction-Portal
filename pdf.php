@@ -1,16 +1,33 @@
-
+<?php session_start(); ?>
 <?php
 //require('fpdf/fpdf.php');
 require_once('Includes/connection.php');
 require('fpdf/WriteHtml.php');
+if(isset($_SESSION['StudentID'])){
+    
+    $reg=$_SESSION['StudentID'];
+    
+    
+    $fid=$_GET['Faculty'];
+    //echo "$reg"." $fid";
+    mysqli_select_db($con,"student_management");
+    $sqlm="SELECT * FROM student_data WHERE Regno='$reg'";
+    $res=mysqli_query($con,$sqlm);
+    while($row=mysqli_fetch_assoc($res)){
+        $branch=$row['Branch'];
+        $name=$row['FName']." ".$row['LName'];
 
-$pdf=new PDF_HTML();
-$pdf->AliasNbPages();
+    }
+    $sqlf="SELECT * FROM faculty_data WHERE FacultyID='$fid'";
+    $res=mysqli_query($con,$sqlf);
+    while($row=mysqli_fetch_assoc($res)){
+        
+        $fname=$row['FacultyName'];
 
-$pdf -> AddPage();
-$pdf->SetFont('Arial','B',20);
-$pdf->SetTitle('Letter Of Recomendation');
-
+    }
+    //echo $fname;
+}
+else if(isset($_SESSION['Faculty'])){
 $name=$_POST['sname'];
 $fname=$_POST['fname'];
 $branch=$_POST['branch'];
@@ -19,6 +36,16 @@ $reg=$_POST['reg'];
 mysqli_select_db($con,"student_management");
 $sql="INSERT INTO lor (Regno,FacultyID) VALUES ('$reg','$fid') ";
 mysqli_query($con,$sql);
+}
+$pdf=new PDF_HTML();
+$pdf->AliasNbPages();
+
+$pdf -> AddPage();
+$pdf->SetFont('Arial','B',20);
+$pdf->SetTitle('Letter Of Recomendation');
+
+
+
 $pdf->Cell(190, 266, "", 1, 0, 'C');
 $pdf->Image('images/vitlogo.png',70,20,70);
 $LOR="<body>
@@ -54,24 +81,3 @@ $rest="
 $pdf->WriteHTML("<br>$rest");
 $pdf->Output();
 ?>
-<html>
-
-<script>
-
-
-function HandleBackFunctionality()
-{
-    if(window.event) //Internet Explorer
-    {
-           alert("Browser back button is clicked on Internet Explorer...");
-    }
-    else //Other browsers e.g. Chrome
-    {
-           alert("Browser back button is clicked on other browser...");
-    }
-}
-
-</script>
-<body onbeforeunload=”HandleBackFunctionality()”>
-</body>
-</html>
