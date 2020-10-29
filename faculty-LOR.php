@@ -96,7 +96,7 @@
 // }
 </script>
 <body >
-<form action="pdf.php" method="POST">
+<form target="_blank" action="pdf.php" method="POST">
 <input type="text" class="inp" name="sname" value="<?php echo $name;?>" >
 <input type="text" class="inp" name="fname" value="<?php echo $namef;?>">
 <input type="text" class="inp" name="branch" value="<?php echo $branch;?>">
@@ -136,7 +136,7 @@ echo"<br><div align='center'><a href='faculty-LOR.php?success=$regno&faculty=$fa
  else{
 ?>
 <div align="center">
-<button type="submit" class="button">Generate LOR</button>
+<button type="submit"  class="button">Generate LOR</button>
 </div>
 <?php
 }

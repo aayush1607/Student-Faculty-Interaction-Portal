@@ -2,8 +2,10 @@
 
     require_once('Includes/header.php');
     require_once('Includes/connection.php');
-
-    if(isset($_GET['edit'])){
+    if(isset($_SESSION['StudentID']) || isset($_SESSION['Faculty']))
+    {
+        $_SESSION['GET']=$GetID=$_GET['edit'];
+   
         $GetID=$_GET['edit'];
         $sql="select * from student_data where Regno='".$GetID."'";
         mysqli_select_db($con,"student_management");
@@ -21,14 +23,14 @@
             $Pass=MD5($row['Password']);
             
         }
-    }
+    
     ?>
-    <?php
-require_once('Includes/header.php');
-require_once('Includes/function.php');
-?>
 
 
+<?php
+ if(isset($_SESSION['Faculty']) || $_SESSION['GET']==$_SESSION['StudentID'])
+ {
+     ?>
 <div class="container">
     <div class="row mb-5">
         <div class="col-lg-6 m-auto">
@@ -103,12 +105,23 @@ require_once('Includes/function.php');
         </div>
     </div>
 </div>
-
-
-
-<?php require_once('Includes/footer.php');
-?>
-
 <?php
-    require_once('Includes/footer.php');
+ }
+else{
+
+    $msg="Permission Denied";
+
+    echo '<div class="alert alert-danger text-center"><img src="images/pdenied.png" alt="X "> '.$msg.'</div> ';
+
+}
+}
+else
+{
+    header("location:login.php?naccess");
+}
+
 ?>
+
+
+<?php require_once('Includes/footer.php'); ?>
+

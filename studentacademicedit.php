@@ -1,10 +1,11 @@
 <?php
  require_once('Includes/header.php');
  require_once('Includes/connection.php');
-//|| isset($_GET['invalidC'])
-if(isset($_GET['edit']) ){
-    
-    $GetID=$_GET['edit'];
+ if(isset($_SESSION['StudentID']) || isset($_SESSION['Faculty']))
+    {
+        $_SESSION['GET']=$GetID=$_GET['edit'];
+   
+        $GetID=$_GET['edit'];
     
     /*else if(isset($_GET['invalidC'])){
         $GetID=$_GET['invalidC'];
@@ -31,14 +32,12 @@ if(isset($_GET['edit']) ){
     while($row3=mysqli_fetch_assoc($res3)){
         array_push($currentCourses,$row3['currCourses']);
     }
-}
- 
+
 ?>
 <?php
-require_once('Includes/header.php');
-require_once('Includes/function.php');
-?>
-
+ if(isset($_SESSION['Faculty']) || $_SESSION['GET']==$_SESSION['StudentID'])
+ {
+     ?>
     <!---->
 <div class="container">
     <div class="row mb-5">
@@ -129,9 +128,22 @@ require_once('Includes/function.php');
         </div>
     </div>
 </div>
-<?php require_once('Includes/footer.php');
-?>
+<?php
+ }
+else{
 
+    $msg="Permission Denied";
+
+    echo '<div class="alert alert-danger text-center"><img src="images/pdenied.png" alt="X "> '.$msg.'</div> ';
+
+}
+}
+else
+{
+    header("location:login.php?naccess");
+}
+
+?>
 <?php
     require_once('Includes/footer.php');
 ?>

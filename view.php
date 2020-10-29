@@ -609,7 +609,7 @@ require_once('Includes/connection.php');
     <div class="col-lg-12 mb-5">
     <div class="card mt-3">
     <table class="table table-striped "  >
-    <tr><th>Faculty:</th><th>view</th></tr>
+    <tr><th>Faculty:</th><th>View</th></tr>
     <?php
     $res10=mysqli_query($con,$sql9);
     $arr=array();
@@ -639,7 +639,7 @@ require_once('Includes/connection.php');
     
     
            
-                <a href="studentlor.php?edit=<?php echo $StudentID?>" class="btn btn-secondary ">Letter of Recommendation</a>
+                
             </div>
         </div>
 

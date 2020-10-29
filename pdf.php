@@ -51,7 +51,6 @@ $pdf->Image('images/vitlogo.png',70,20,70);
 $LOR="<body>
 <br><br><br><br><br><br><br><br><br><br>
 <table style='width:100%;padding:30px;border: 1px solid black;'>
-
 <tr>
 <th align='center'><br><br><h1 ><i>                             <b><u>Letter Of Recomendation</u></b></i></h1></th>
 </tr>";
@@ -71,7 +70,6 @@ $rest="
 <br>
 <br><br>
 <br>
-
       
     <b>________________</b>                                                 <b>________________</b>                                                   <br>             <i> <b>Chancellor Of VIT</b></i>                                                 <i><b>    Dr. $fname</b></i>
 </td>

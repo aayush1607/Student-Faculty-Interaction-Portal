@@ -2,9 +2,11 @@
  require_once('Includes/header.php');
  require_once('Includes/connection.php');
  
+ if(isset($_SESSION['StudentID']) || isset($_SESSION['Faculty']))
+ {
+     $_SESSION['GET']=$GetID=$_GET['edit'];
 
-if(isset($_GET['edit'])){
-    $GetID=$_GET['edit'];
+     $GetID=$_GET['edit'];
     $sql="select * from projects where Regno='".$GetID."'";
     mysqli_select_db($con,"student_management");
 $res=mysqli_query($con,$sql);
@@ -31,10 +33,13 @@ while($row=mysqli_fetch_assoc($res)){
     $i++;
 }
 
-}
+
  
 ?>
-    <!---->
+<?php
+ if(isset($_SESSION['Faculty']) || $_SESSION['GET']==$_SESSION['StudentID'])
+ {
+     ?>
 <div class="container">
     <div class="row mb-5">
         <div class="col-lg-12 m-auto ">
@@ -108,7 +113,21 @@ while($row=mysqli_fetch_assoc($res)){
         
     </div>
 </div>
-<?php require_once('Includes/footer.php');
+<?php
+ }
+else{
+
+    $msg="Permission Denied";
+
+    echo '<div class="alert alert-danger text-center"><img src="images/pdenied.png" alt="X "> '.$msg.'</div> ';
+
+}
+}
+else
+{
+    header("location:login.php?naccess");
+}
+
 ?>
 
 <?php

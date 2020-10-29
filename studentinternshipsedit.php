@@ -2,10 +2,11 @@
  require_once('Includes/header.php');
  require_once('Includes/connection.php');
  
-
-
- if(isset($_GET['edit'])){
-    $GetID=$_GET['edit'];
+ if(isset($_SESSION['StudentID']) || isset($_SESSION['Faculty']))
+    {
+        $_SESSION['GET']=$GetID=$_GET['edit'];
+   
+        $GetID=$_GET['edit'];
     $sql="select * from internships where Regno='".$GetID."'";
     mysqli_select_db($con,"student_management");
 $res=mysqli_query($con,$sql);
@@ -27,45 +28,13 @@ class Internships{
     $i++;
   }
 
-}
+
 ?>
 
-    <!--<div class="container">
-    <div class="row mb-5">
-        <div class="col-lg-6 m-auto ">
-            <div class="mt-5">
-                <img src="images/slogin.png" alt="Student Register" width="150" height="150" class="d-flex m-auto">
-            </div>
-            <div class="card mt-5">
-                <div class="card-title bg-dark rounded-top">
-                    <h3 class="text-center text-white py-3">Edit Internship Details</h3>
-                </div>
-
-                
-
-                <div class="card-body">
-
-                <form action="update.php" method="POST" enctype="multipart/form-data">
-              
-                
-                <input type="number" placeholder="Internship number" name="intrno" class="form-control mb-2" >
-                
-                
-                <input type="text" placeholder="Company name" name="Comp" class="form-control mb-2" >
-                <input type="text" placeholder="Designation" name="desig" class="form-control mb-2" >
-                
-                
-               
-                
-<button class="btn btn-success" name="updateinternship">Update</button>
-
-                </form >
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
--->
+<?php
+ if(isset($_SESSION['Faculty']) || $_SESSION['GET']==$_SESSION['StudentID'])
+ {
+     ?>
 
 <div class="container">
     <div class="row mb-5">
@@ -135,7 +104,22 @@ class Internships{
         
     </div>
 </div>
+<?php
+ }
+else{
 
+    $msg="Permission Denied";
+
+    echo '<div class="alert alert-danger text-center"><img src="images/pdenied.png" alt="X "> '.$msg.'</div> ';
+
+}
+}
+else
+{
+    header("location:login.php?naccess");
+}
+
+?>
 
 <?php
     require_once('Includes/footer.php');
