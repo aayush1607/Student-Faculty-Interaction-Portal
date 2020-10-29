@@ -7,7 +7,7 @@
     }
     if(isset($_SESSION['Faculty']))
     {
-
+        $fac=$_SESSION['Faculty'];
         $sql="select * from student_data";
         mysqli_select_db($con,"student_management");
 
@@ -67,7 +67,8 @@
                             <td>Branch</td>
                             <td>Email</td>
                             <td>Skills</td>
-                            <td colspan="6">Operation</td>
+                            <td >Operation</td>
+                            <td >Generate LOR</td>
                         </tr>
                     <script>
                        var arrobj=[];
@@ -174,16 +175,16 @@
                      
                     
                         
-                        <td>{{i.Reg}}</td>
+                        <td id="reg">{{i.Reg}}</td>
                         <td>{{i.name}}</td>
                         <td>{{i.branch}}</td>
                         <td>{{i.email}}</td>
                         <td>{{i.skills}}</td>
                         
-                      
-                        <td><a href="view.php?success={{i.Reg}}" class="btn btn-success btn-sm">View</a></td> 
-                              
-                    
+                        <td><a href="view.php?success={{i.Reg}}" class="btn btn-success btn-sm">View</a></td>
+                        
+                        <td><a href="faculty-LOR.php?success={{i.Reg}}&faculty=<?php echo $fac;?>" class="btn btn-success btn-sm">Generate LOR</a></td>      
+                         
                     </tr>
                    
                    

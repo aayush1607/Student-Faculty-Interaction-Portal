@@ -38,7 +38,7 @@ require_once('Includes/function.php');
                         
                     }
                     
-                    if(isset($_SESSION['Faculty']) and !(isset($_SESSION['StudentID'])))
+                    if(isset($_SESSION['Faculty']))
                     {
                         header("location:faculty-view.php");
                     }
