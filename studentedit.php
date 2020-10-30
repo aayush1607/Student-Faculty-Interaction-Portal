@@ -57,7 +57,7 @@
                 <input type="text" placeholder="First Name" name="FName" class="form-control mb-2" value="<?php echo $FName?>">
                 <input type="text" placeholder="Last Name" name="LName" class="form-control mb-2" value="<?php echo $LName?>">
                 <input type="text" placeholder="Registration Number" name="regno" class="form-control mb-2" value="<?php echo $StudentID?>" readonly>
-                <input type="text" placeholder="DOB DD/MM/YYYY" name="DOB" class="form-control mb-2" value="<?php echo $DOB?>">
+                <input type="date" placeholder="DOB DD/MM/YYYY" name="DOB" class="form-control mb-2" value="<?php echo $DOB?>">
                 <select name="branch" class="form-control mb-2">
 <!-- 
                         <option value="null">Choose Branch</option>

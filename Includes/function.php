@@ -71,6 +71,60 @@ function RegisterFun()
 
 }
 
+//fac Register
+
+function FacRegisterFun()
+{
+
+
+    $msg="";
+    if(isset($_GET['Name'])){
+        $msg="Please Enter First Name";
+        echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
+
+    }
+
+    if(isset($_GET['ID'])){
+        $msg="Please Enter Last Name";
+        echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
+
+    }
+
+    if(isset($_GET['email'])){
+        $msg="Please Enter Email";
+        echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
+
+    }
+    if(isset($_GET['password'])){
+        $msg="Please Enter Password";
+        echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
+
+    }
+    if(isset($_GET['characters'])){
+        $msg="Please Enter Valid Characters in Your Name";
+        echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
+    }
+    if(isset($_GET['InValidEmail'])){
+        $msg="Please Enter Valid Email";
+        echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
+    }
+    if(isset($_GET['UserExits'])){
+        $msg="Your Account Already Exits";
+        echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
+    }
+    if(isset($_GET['success'])){
+        $msg="Successfully Registered!";
+        echo '<div class="alert alert-success text-center">'.$msg.'
+        <a href="faculty-login.php">Login Now</a> </div>';
+
+        
+    }
+
+
+
+
+
+}
 
 function loginfun(){
 

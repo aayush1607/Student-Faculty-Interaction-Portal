@@ -23,6 +23,11 @@ require_once('Includes/function.php');
                     {
                             echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
                     }
+                    $msg="Password Invalid";
+                    if(isset($_GET['pinvalid']))
+                    {
+                            echo '<div class="alert alert-danger text-center">'.$msg.'</div>';
+                    }
                     $msg="Invalid Credentials";
                     if(isset($_GET['InvalidCre']))
                     {

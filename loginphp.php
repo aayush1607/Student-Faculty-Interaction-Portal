@@ -23,6 +23,7 @@
                 //de hash
                 $hash=password_verify($Pass,$row['Password']);
                 if($hash==false){
+                    
                     header("location:login.php?pinvalid");
                     exit();
                 }

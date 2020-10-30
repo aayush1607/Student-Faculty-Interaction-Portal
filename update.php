@@ -16,14 +16,16 @@ require_once('Includes/header.php');
         $pass=password_hash($pass,PASSWORD_DEFAULT);
         $sql="UPDATE student_data SET FName='$FName',LName='$LName',DOB='$DOB',Email='$Email',Branch='$branch',Password='$pass' WHERE Regno='$Regno'";
         if(mysqli_query($conn,$sql)){
-            echo "Successfully Updated";
+            $msg="Successfully Updated Your Details!";
+            echo '<div class="alert alert-success text-center">'.$msg.'</div>';
+            echo "<div align='center' class='mt-3'> <a href=\"javascript:history.go(-1)\" class='btn btn-dark btn-lg active' role='button' aria-pressed='true'>Go Back</a></div>";
         }
         else{
             echo "Update failed!!";
         }
     }
     else if(isset($_POST['updateinternship'])){
-        $flag=false;
+        $flag=true;
         $Regno=$_POST['regno'];
         //$ID=$_POST['id'];
         $count=$_POST['count'];
@@ -38,15 +40,13 @@ require_once('Includes/header.php');
 
           
             $sql="UPDATE internships SET Cname='$cn',Role='$rl' WHERE Regno='$Regno' AND ID='$ID'";
-            if(mysqli_query($conn,$sql))
+            if(!mysqli_query($conn,$sql))
             {
-                $flag=true;
+                $flag=false;
             
 
             }
-            else{
-                $flag=false;
-            }
+
             
         }
         if($flag==true)
@@ -61,7 +61,7 @@ require_once('Includes/header.php');
         }
 
         if($cond=="Yes"){
-            $flag=false;
+            $flag=true;
             $i=$count;
             $ID=$i+1;
             $cn=$_POST["cname$i"];
@@ -86,7 +86,7 @@ require_once('Includes/header.php');
 
     }
     else if(isset($_POST['updatecontribution'])){
-        $flag=false;
+        $flag=true;
         $Regno=$_POST['regno'];
         //$ID=$_POST['id'];
         $count=$_POST['count'];
@@ -102,15 +102,13 @@ require_once('Includes/header.php');
 
           
             $sql="UPDATE contributions SET Oname='$oname',IOvit='$iovit',Role='$role' WHERE Regno='$Regno' AND ID='$ID'";
-            if(mysqli_query($conn,$sql))
+            if(!mysqli_query($conn,$sql))
             {
-                $flag=true;
+                $flag=false;
             
 
             }
-            else{
-                $flag=false;
-            }
+
             
         }
         if($flag==true)
@@ -126,7 +124,7 @@ require_once('Includes/header.php');
         
        
         if($cond=="Yes"){
-            $flag=false;
+            $flag=true;
             $i=$count;
             $ID=$i+1;
             $oname=$_POST["oname$i"];
@@ -153,7 +151,7 @@ require_once('Includes/header.php');
 
     }
     else if(isset($_POST['updateachievement'])){
-        $flag=false;
+        $flag=true;
         $Regno=$_POST['regno'];
         //$ID=$_POST['id'];
         $count=$_POST['count'];
@@ -169,14 +167,11 @@ require_once('Includes/header.php');
 
           
             $sql="UPDATE achievements SET Type='$type',Description='$des',Year='$year' WHERE Regno='$Regno' AND ID='$ID'";
-            if(mysqli_query($conn,$sql))
+            if(!mysqli_query($conn,$sql))
             {
-                $flag=true;
+                $flag=false;
             
 
-            }
-            else{
-                $flag=false;
             }
             
         }
@@ -193,7 +188,7 @@ require_once('Includes/header.php');
         
        
         if($cond=="Yes"){
-            $flag=false;
+            $flag=true;
             $i=$count;
             $ID=$i+1;
             $type=$_POST["type$i"];
@@ -351,7 +346,7 @@ require_once('Includes/header.php');
     }
     else if(isset($_POST['updateproject'])){
         $Regno=$_POST['regno'];
-        $flag=false;
+        $flag=true;
         //$ID=$_POST['id'];
         $count=$_POST['count'];
         $cond=$_POST['cout'];
@@ -367,13 +362,11 @@ require_once('Includes/header.php');
             //echo "$ID <br>$title<br> $desc<br> $tech<br> $link<br><br><br>";
         
             $sql="UPDATE projects SET Title='$title',Description='$desc',Technologies='$tech', Link='$link' WHERE Regno='$Regno' AND ID='$ID'";
-            if(mysqli_query($conn,$sql))
+            if(!mysqli_query($conn,$sql))
             {
-                $flag=true;
-            }
-            else{
                 $flag=false;
             }
+
         }
         if($flag==true)
         {

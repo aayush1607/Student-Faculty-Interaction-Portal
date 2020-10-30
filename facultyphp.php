@@ -6,21 +6,36 @@
         if(empty($_POST['empid']) || empty($_POST['password']))
         {
             header("location:faculty-login.php?empty");
+            exit();
         }
         else{
             $Empid=mysqli_real_escape_string($con,$_POST['empid']);
             $Pass=mysqli_real_escape_string($con,$_POST['password']);
 
-            $sql="select * from faculty_data where FacultyID ='".$Empid."' and FacultyPassword='".$Pass."'";
+            $sql="select * from faculty_data where FacultyID ='".$Empid."'";
             mysqli_select_db($con,"student_management");
             $res=mysqli_query($con,$sql);
             if($row=mysqli_fetch_assoc($res))
             {
-                $_SESSION['Faculty']=$row['FacultyID'];
-                header("location:faculty-view.php");
+                                //de hash
+                $hash=password_verify($Pass,$row['FacultyPassword']);
+                if($hash==false){
+                    header("location:faculty-login.php?pinvalid");
+                    exit();
+                }
+                elseif($hash==true){
+
+
+                    $_SESSION['Faculty']=$row['FacultyID'];
+                    header("location:faculty-view.php");
+
+                }
+                
+                
             }
             else{
                 header("location:faculty-login.php?InvalidCre");
+                exit();
             }
 
         }

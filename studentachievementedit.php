@@ -124,7 +124,9 @@ class Achievements{
                        min='20$mD-01' value=$date>";
                 echo"</br></br></div></div><br>";
                 }
+                $mD=substr($GetID,0,2);
                 ?>
+                
                 <div id="New" >
                    
    
@@ -143,7 +145,7 @@ class Achievements{
                     function add(){
                         document.getElementById("k").style.display="none";
 
-                document.getElementById("New").innerHTML+="<div class='card mt-3'><div class='card-title bg-dark rounded-top'><h3 class='text-center text-white py-3'>New Achievement</h3></div>"+"<?php echo "<div class='m-auto col-lg-9'><input type='text'  name='id$k'  value='$k' style='display:none;'>";echo "<label for='achi'>Choose a Type:</label> <select id='achi' name='type$i' class='form-control mb-2'><option value='Got Award/Rank'>Got Award/Rank</option><option value='Got Scholarship'>Got Scholarship</option><option value='Conducted Workshop/Techfest'>Conducted Workshop/Techfest</option></select>";echo "<textarea placeholder='Description' name='des$i' rows='3' cols='8' class='form-control mb-2' required >$ds</textarea>";echo "  <label for='year'>Year and Month of Achievements:</label><input type='month' id='year' name='year$i'min='20$mD-01' value=$date required> ";echo "<input type='text' value='Yes' name='cout' style='display:none;'>";echo"</br></br></div></div><br>";?>";
+                document.getElementById("New").innerHTML+="<div class='card mt-3'><div class='card-title bg-dark rounded-top'><h3 class='text-center text-white py-3'>New Achievement</h3></div>"+"<?php echo "<div class='m-auto col-lg-9'><input type='text'  name='id$k'  value='$k' style='display:none;'>";echo "<label for='achi'>Choose a Type:</label> <select id='achi' name='type$i' class='form-control mb-2'><option value='Got Award/Rank'>Got Award/Rank</option><option value='Got Scholarship'>Got Scholarship</option><option value='Conducted Workshop/Techfest'>Conducted Workshop/Techfest</option></select>";echo "<textarea placeholder='Description' name='des$i' rows='3' cols='8' class='form-control mb-2' required ></textarea>";echo "  <label for='year'>Year and Month of Achievements:</label><input type='month' id='year' name='year$i'min='20$mD-01' required> ";echo "<input type='text' value='Yes' name='cout' style='display:none;'>";echo"</br></br></div></div><br>";?>";
                     }
                 </script>
   

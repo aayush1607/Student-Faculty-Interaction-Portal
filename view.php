@@ -231,17 +231,23 @@ require_once('Includes/connection.php');
                     
                     ?>
                      <div align="center">
-                        <div class="col-lg-9"> 
+                     
+                        <div class="col-lg-9 " > 
+                        
                         <div class="card bg-dark text-white mt-3">
-                        <h3 class="text-center py-3">
-                           Contribution <?php echo $i+1?>
-                        </h3>
+
+                        <div style="display: inline-block; ">
+                            <h3 class="text-center py-3" >
+                            Contribution <?php echo $i+1?>  <button style="padding: 0;  outline: none; border: none; background: none; width: 30px; height: 30px;" class="bg-dark rounded-circle mb-2" data-toggle="collapse" data-target="#c<?php echo $i+1?>"><img width="25" height="25" src="images/icons8-expand-arrow-48.png" alt="DropDown"></button>
+                            </h3>
                         </div>
+                    </div>
+                        
                         </div>
     
                         
-                        <div class="col-lg-9">  
-                        <div class="card mt-3" >
+                        <div class="col-lg-9 collapse" id="c<?php echo $i+1?>">  
+                        <div class="card mt-3 " >
                             
                            <table class="table table-striped "  >    
                                 <tr>
@@ -277,9 +283,12 @@ require_once('Includes/connection.php');
             }
 
                ?>
-     
+               <div align="center" >
+            <div class="col-lg-9">
             <div class="card mt-3 mb-5">
             <a href="studentcontributionedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Contributions</a>
+            </div>
+            </div>
             </div>
         </div>
 
@@ -337,14 +346,17 @@ require_once('Includes/connection.php');
                  <div align="center">
                     <div class="col-lg-9"> 
                     <div class="card bg-dark text-white mt-3">
+
+                    <div style="display: inline-block; ">
                     <h3 class="text-center py-3">
-                       Achievement <?php echo $i+1?>
+                       Achievement <?php echo $i+1?> <button style="padding: 0;  outline: none; border: none; background: none; width: 30px; height: 30px;" class="bg-dark rounded-circle mb-2" data-toggle="collapse" data-target="#c<?php echo $i+1?>"><img width="25" height="25" src="images/icons8-expand-arrow-48.png" alt="DropDown"></button>
                     </h3>
+                    </div>
                     </div>
                     </div>
 
                     
-                    <div class="col-lg-9">  
+                    <div class="col-lg-9 collapse" id="c<?php echo $i+1?>"> 
                     <div class="card mt-3" >
                         
                        <table class="table table-striped "  >    
@@ -381,8 +393,12 @@ require_once('Includes/connection.php');
         }
 
            ?>
+            <div align="center" >
+            <div class="col-lg-9">
             <div class="card mt-3 mb-5">
             <a href="studentachievementedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Achievements</a>
+            </div>
+            </div>
             </div>
         </div>
     
@@ -450,14 +466,16 @@ require_once('Includes/connection.php');
                         <div align="center">
                         <div class="col-lg-9"> 
                         <div class="card bg-dark text-white mt-3">
+                        <div style="display: inline-block; ">
                         <h3 class="text-center py-3">
-                           Project <?php echo $i+1?>
+                           Project <?php echo $i+1?> <button style="padding: 0;  outline: none; border: none; background: none; width: 30px; height: 30px;" class="bg-dark rounded-circle mb-2" data-toggle="collapse" data-target="#c<?php echo $i+1?>"><img width="25" height="25" src="images/icons8-expand-arrow-48.png" alt="DropDown"></button>
                         </h3>
+                        </div>
                         </div>
                         </div>
     
                         
-                        <div class="col-lg-9">  
+                        <div class="col-lg-9 collapse" id="c<?php echo $i+1?>">    
                         <div class="card mt-3" >
                             
                            <table class="table table-striped "  >    
@@ -498,11 +516,14 @@ require_once('Includes/connection.php');
 
                ?>
            
-
-<div class="card mt-3 mb-5">
+           <div align="center" >
+            <div class="col-lg-9">
+            <div class="card mt-3 mb-5">
         <a href="studentprojectedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Projects</a>
-</div>
-</div>
+        </div>
+            </div>
+            </div>
+        </div>
 
 
     <div class="col">  
@@ -554,14 +575,18 @@ require_once('Includes/connection.php');
                  <div align="center">
                     <div class="col-lg-9"> 
                     <div class="card bg-dark text-white mt-3">
+
+                    
+                    <div style="display: inline-block; ">
                     <h3 class="text-center py-3">
-                       Internship <?php echo $i+1?>
+                       Internship <?php echo $i+1?> <button style="padding: 0;  outline: none; border: none; background: none; width: 30px; height: 30px;" class="bg-dark rounded-circle mb-2" data-toggle="collapse" data-target="#c<?php echo $i+1?>"><img width="25" height="25" src="images/icons8-expand-arrow-48.png" alt="DropDown"></button>
                     </h3>
+                    </div>
                     </div>
                     </div>
 
                     
-                    <div class="col-lg-9">  
+                    <div class="col-lg-9 collapse" id="c<?php echo $i+1?>">  
                     <div class="card mt-3" >
                         
                        <table class="table table-striped "  >    
@@ -591,13 +616,15 @@ require_once('Includes/connection.php');
 
                ?>
                
-
+               <div align="center" >
+            <div class="col-lg-9">
             <div class="card mt-3 mb-5">
             
             <a href="studentinternshipsedit.php?edit=<?php echo $StudentID?>" class="btn btn-success btn-sl">Edit Internships</a>
             </div>
+            </div>
+            </div>
         </div>
-
 
         
     <div class="col">  

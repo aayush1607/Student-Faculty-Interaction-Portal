@@ -36,7 +36,7 @@ require_once('Includes/function.php');
                 <input type="text" placeholder="First Name" name="FName" class="form-control mb-2">
                 <input type="text" placeholder="Last Name" name="LName" class="form-control mb-2">
                 <input type="text" placeholder="Registration Number" name="regno" class="form-control mb-2">
-                <input type="text" placeholder="DOB DD/MM/YYYY" name="DOB" class="form-control mb-2">
+                <input type="date" placeholder="DOB DD/MM/YYYY" name="DOB" class="form-control mb-2">
                 <select name="branch" class="form-control mb-2">
                     <option value="null">Choose Branch</option>
                     <option value="CSE">Computer Science</option>
