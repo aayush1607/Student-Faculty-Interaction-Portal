@@ -653,7 +653,7 @@ require_once('Includes/connection.php');
         }
     
                             echo "<tr>".
-                                "<th> $fname</th>".
+                                "<th>Dr. $fname</th>".
                                 "<td><a href='pdf.php?Faculty=$fid' class='btn btn-success btn-sl'>View</a></td>".
                             "</tr>";
     }
@@ -661,7 +661,6 @@ require_once('Includes/connection.php');
    
                             
     </table>
-    
 
     
     
@@ -669,10 +668,14 @@ require_once('Includes/connection.php');
                 
             </div>
         </div>
+        <br>
+    <br>
+        
 
 
     </div>
-
+    
+   
 
 <?php
 }
