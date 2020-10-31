@@ -651,12 +651,19 @@ require_once('Includes/connection.php');
             $fname=$row['FacultyName'];
             
         }
-    
+                            if(!isset($_SESSION['Faculty']))
+                            {
                             echo "<tr>".
                                 "<th>Dr. $fname</th>".
                                 "<td><a href='pdf.php?Faculty=$fid' class='btn btn-success btn-sl'>View</a></td>".
                             "</tr>";
-    }
+                            }
+                            else{
+                                echo "<tr>".
+                                "<th>Dr. $fname</th>".
+                            "</tr>";
+                            }                       
+}
                             ?>
    
                             
